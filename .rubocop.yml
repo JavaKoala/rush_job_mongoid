@@ -1,0 +1,15 @@
+require:
+ - rubocop-rails
+ - rubocop-capybara
+
+AllCops:
+  NewCops: enable
+
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
