@@ -49,6 +49,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.4)
+    brakeman (6.0.1)
     bson (4.15.0)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
@@ -186,6 +187,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  brakeman (~> 6.0)
   debug (~> 1.8)
   puma (~> 6.3)
   rubocop-capybara (~> 2.18)

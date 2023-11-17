@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'delayed_job', '~> 4.1'
   spec.add_runtime_dependency 'delayed_job_mongoid', '~> 3.0'
 
+  spec.add_development_dependency 'brakeman', '~> 6.0'
   spec.add_development_dependency 'debug', '~> 1.8'
   spec.add_development_dependency 'puma', '~> 6.3'
   spec.add_development_dependency 'rubocop-capybara', '~> 2.18'
