@@ -1,5 +1,7 @@
 module RushJobMongoid
   class RushJobsController < ApplicationController
-    def index; end
+    def index
+      @rush_jobs = RushJob.all
+    end
   end
 end

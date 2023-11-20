@@ -1,1 +1,32 @@
 <h2>Welcome to RushJob MongoDB</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>priority</th>
+      <th>attempts</th>
+      <th>handler</th>
+      <th>run_at</th>
+      <th>locked_at</th>
+      <th>locked_by</th>
+      <th>failed_at</th>
+      <th>last_error</th>
+      <th>queue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rush_jobs.each do |job| %>
+      <tr>
+        <td><%= job.priority %></td>
+        <td><%= job.attempts %></td>
+        <td><%= job.handler %></td>
+        <td><%= job.run_at %></td>
+        <td><%= job.locked_at %></td>
+        <td><%= job.locked_by %></td>
+        <td><%= job.failed_at %></td>
+        <td><%= job.last_error %></td>
+        <td><%= job.queue %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

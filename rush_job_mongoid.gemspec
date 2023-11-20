@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activerecord', '~> 7.0'
   spec.add_dependency 'activesupport', '~> 7.0'
   spec.add_dependency 'importmap-rails', '~> 1.2'
+  spec.add_dependency 'mongoid', '~> 8.1'
   spec.add_dependency 'pagy', '~> 6.0'
   spec.add_dependency 'sassc-rails', '~> 2.1'
 

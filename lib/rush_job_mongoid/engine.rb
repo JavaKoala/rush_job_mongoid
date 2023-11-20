@@ -1,4 +1,6 @@
 module RushJobMongoid
+  require 'mongoid'
+
   class Engine < ::Rails::Engine
     isolate_namespace RushJobMongoid
 
