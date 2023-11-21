@@ -5,6 +5,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <%= javascript_importmap_tags %>
+  <%= javascript_import_module_tag "rush_job_mongoid/application" %>
+
   <%= stylesheet_link_tag    "rush_job_mongoid/application", media: "all" %>
 </head>
 <body>
