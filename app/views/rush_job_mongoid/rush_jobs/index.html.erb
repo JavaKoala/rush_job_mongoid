@@ -5,7 +5,8 @@
     <tr>
       <th>priority</th>
       <th>attempts</th>
-      <th>handler</th>
+      <th>job class</th>
+      <th>job arguments</th>
       <th>run_at</th>
       <th>locked_at</th>
       <th>locked_by</th>
@@ -19,7 +20,8 @@
       <tr>
         <td><%= job.priority %></td>
         <td><%= job.attempts %></td>
-        <td><%= job.handler %></td>
+        <td><%= job.job_class %></td>
+        <td><%= job.job_arguments %></td>
         <td><%= job.run_at %></td>
         <td><%= job.locked_at %></td>
         <td><%= job.locked_by %></td>
