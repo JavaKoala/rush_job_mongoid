@@ -1,0 +1,11 @@
+en:
+  arguments: "Arguments"
+  attempts: "Attempts"
+  failed_at: "Failed at"
+  job_class: "Job class"
+  last_error: "Last error"
+  locked_at: "Locked at"
+  locked_by: "Locked by"
+  priority: "Priority"
+  queue: "Queue"
+  run_at: "Run at"
