@@ -15,6 +15,7 @@ module RushJobMongoid
     field :queue,      type: String
 
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
+    scope :paginate, ->(page) { limit(20).skip(20 * (page - 1)) }
 
     def job_class
       job_data[:job_class]
