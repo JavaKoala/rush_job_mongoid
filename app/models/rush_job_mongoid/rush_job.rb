@@ -14,6 +14,8 @@ module RushJobMongoid
     field :last_error, type: String
     field :queue,      type: String
 
+    scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
+
     def job_class
       job_data[:job_class]
     end
