@@ -2,6 +2,8 @@ module RushJobMongoid
   class RushJob
     include Mongoid::Document
 
+    JOBS_PER_PAGE = 20
+
     store_in collection: 'delayed_backend_mongoid_jobs'
 
     field :priority,   type: Integer, default: 0
@@ -15,7 +17,7 @@ module RushJobMongoid
     field :queue,      type: String
 
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
-    scope :paginate, ->(page) { limit(20).skip(20 * (page - 1)) }
+    scope :paginate, ->(page) { limit(JOBS_PER_PAGE).skip(JOBS_PER_PAGE * (page - 1)) }
 
     def job_class
       job_data[:job_class]
@@ -23,6 +25,10 @@ module RushJobMongoid
 
     def job_arguments
       job_data[:arguments].presence || ''
+    end
+
+    def self.pages_count
+      (count / JOBS_PER_PAGE.to_f).ceil
     end
 
     private
