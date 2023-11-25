@@ -46,33 +46,33 @@
     <% if @pages_count < 5 %>
       <% (1..@pages_count).each do |page| %>
         <li class="page-item">
-          <%= link_to page, root_path({ page: page }), class: 'page-link' %>
+          <%= link_to page, root_path({ page: page }), class: "page-link #{'active' if @page == page}" %>
         </li>
       <% end %>
     <% else %>
       <% if @page < 3 || @page >= @pages_count - 1 %>
         <li class="page-item">
-          <%= link_to 1, root_path({ page: 1 }), class: 'page-link' %>
+          <%= link_to 1, root_path({ page: 1 }), class: "page-link #{'active' if @page == 1}" %>
         </li>
         <li class="page-item">
-          <%= link_to 2, root_path({ page: 2 }), class: 'page-link' %>
+          <%= link_to 2, root_path({ page: 2 }), class: "page-link #{'active' if @page == 2}" %>
         </li>
       <% else %>
         <li class="page-item">
           <%= link_to @page - 1, root_path({ page: @page - 1 }), class: 'page-link' %>
         </li>
         <li class="page-item">
-          <%= link_to @page, root_path({ page: @page }), class: 'page-link' %>
+          <%= link_to @page, root_path({ page: @page }), class: "page-link active" %>
         </li>
       <% end %>
       <li class="page-item">
         <%= link_to '...', '#', class: 'page-link' %>
       </li>
       <li class="page-item">
-        <%= link_to @pages_count - 1, root_path({ page: @pages_count - 1 }), class: 'page-link' %>
+        <%= link_to @pages_count - 1, root_path({ page: @pages_count - 1 }), class: "page-link #{'active' if @page == @pages_count - 1}" %>
       </li>
       <li class="page-item">
-        <%= link_to @pages_count, root_path({ page: @pages_count }), class: 'page-link' %>
+        <%= link_to @pages_count, root_path({ page: @pages_count }), class: "page-link #{'active' if @page == @pages_count}" %>
       </li>
     <% end %>
 
