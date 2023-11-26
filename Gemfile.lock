@@ -63,6 +63,7 @@ GEM
     delayed_job_mongoid (3.0.0)
       delayed_job (>= 3.0, < 5)
       mongoid (>= 5.0)
+    docile (1.4.0)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -165,6 +166,12 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -193,6 +200,7 @@ DEPENDENCIES
   rubocop-minitest (~> 0.31.0)
   rubocop-rails (~> 2.21)
   rush_job_mongoid!
+  simplecov (~> 0.22.0)
   sprockets-rails (~> 3.4)
 
 BUNDLED WITH

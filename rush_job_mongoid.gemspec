@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-capybara', '~> 2.18'
   spec.add_development_dependency 'rubocop-minitest', '~> 0.31.0'
   spec.add_development_dependency 'rubocop-rails', '~> 2.21'
+  spec.add_development_dependency 'simplecov', '~> 0.22.0'
   spec.add_development_dependency 'sprockets-rails', '~> 3.4'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
