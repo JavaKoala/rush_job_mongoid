@@ -1,3 +1,4 @@
 RushJobMongoid::Engine.routes.draw do
-  root 'rush_jobs#index'
+  root 'dashboard#index'
+  get '/rush_jobs', to: 'rush_jobs#index'
 end
