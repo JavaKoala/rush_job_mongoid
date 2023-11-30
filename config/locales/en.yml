@@ -1,8 +1,11 @@
 en:
   arguments: "Arguments"
   attempts: "Attempts"
+  dashboard: "Dashboard"
+  delayed_title: "Delayed Jobs"
   failed_at: "Failed at"
   job_class: "Job class"
+  jobs: "Jobs"
   last_error: "Last error"
   locked_at: "Locked at"
   locked_by: "Locked by"

@@ -1,0 +1,29 @@
+<div class="bs-component mb-1">
+  <nav class="navbar navbar-expand-lg bg-primary"
+       data-bs-theme="dark"
+       aria-label="Navigation">
+    <div class="container-fluid">
+      <%= link_to t(:delayed_title), root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#rush-job-navbar-links"
+              aria-controls="rush-job-navbar-links"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="rush-job-navbar-links">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <%= link_to t(:dashboard), root_path, class: "nav-link#{' active' if current_page?(root_path)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to t(:jobs), rush_jobs_path, class: "nav-link#{' active' if current_page?(rush_jobs_path)}" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
