@@ -66,6 +66,10 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
+    database_cleaner-core (2.0.1)
+    database_cleaner-mongoid (2.0.1)
+      database_cleaner-core (~> 2.0.0)
+      mongoid
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
@@ -217,6 +221,7 @@ PLATFORMS
 DEPENDENCIES
   brakeman (~> 6.0)
   capybara (~> 3.39)
+  database_cleaner-mongoid (~> 2.0)
   debug (~> 1.8)
   puma (~> 6.3)
   rubocop-capybara (~> 2.18)

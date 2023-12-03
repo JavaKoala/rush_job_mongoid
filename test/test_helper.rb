@@ -8,3 +8,4 @@ end
 
 require_relative '../test/dummy/config/environment'
 require 'rails/test_help'
+require 'database_cleaner-mongoid'

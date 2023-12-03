@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'brakeman', '~> 6.0'
   spec.add_development_dependency 'capybara', '~> 3.39'
+  spec.add_development_dependency 'database_cleaner-mongoid', '~> 2.0'
   spec.add_development_dependency 'debug', '~> 1.8'
   spec.add_development_dependency 'puma', '~> 6.3'
   spec.add_development_dependency 'rubocop-capybara', '~> 2.18'
