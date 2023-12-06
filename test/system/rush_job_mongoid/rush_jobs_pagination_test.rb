@@ -10,14 +10,8 @@ module RushJobMongoid
       DatabaseCleaner.clean
     end
 
-    test 'No pagination for a single page' do
-      visit '/rush_job_mongoid/rush_jobs'
-
-      assert_no_selector '.pagination'
-    end
-
-    test 'Pagination for multiple pages' do
-      50.times do
+    def create_jobs(number_of_jobs = 50)
+      number_of_jobs.times do |n|
         RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
                                 "job_data:\n  job_class: TestHandler\n  arguments:\n  - arg1",
                        run_at: Time.zone.now,
@@ -25,12 +19,69 @@ module RushJobMongoid
                        locked_by: '',
                        failed_at: Time.zone.now,
                        last_error: '',
-                       queue: 'default')
+                       queue: "Queue #{n}")
       end
+    end
 
+    test 'No pagination for a single page' do
+      visit '/rush_job_mongoid/rush_jobs'
+
+      assert_no_selector '.pagination'
+    end
+
+    test 'Pagination for multiple pages' do
+      create_jobs
       visit '/rush_job_mongoid/rush_jobs'
 
       assert_selector '.pagination'
+      assert_text 'Queue 0'
+      assert_text 'Queue 19'
+      assert_no_text 'Queue 20'
+      assert_no_text '...'
+      assert_link 'Previous'
+      assert_css '.disabled', text: 'Previous'
+      assert_link '1'
+      assert_css '.active', text: '1'
+      assert_link '2'
+      assert_no_css '.active', text: '2'
+    end
+
+    test 'Next button' do
+      create_jobs
+      visit '/rush_job_mongoid/rush_jobs'
+
+      click_link 'Next'
+      assert_text 'Queue 20'
+      assert_text 'Queue 39'
+      assert_no_text 'Queue 40'
+      assert_no_css '.disabled', text: 'Previous'
+      assert_link '1'
+      assert_no_css '.active', text: '1'
+      assert_link '2'
+      assert_css '.active', text: '2'
+    end
+
+    test 'Previous button' do
+      create_jobs
+      visit '/rush_job_mongoid/rush_jobs'
+
+      click_link 'Next'
+      click_link 'Previous'
+      assert_text 'Queue 0'
+      assert_text 'Queue 19'
+      assert_css '.disabled', text: 'Previous'
+    end
+
+    test 'Last link' do
+      create_jobs
+      visit '/rush_job_mongoid/rush_jobs'
+
+      click_link '3'
+      assert_text 'Queue 40'
+      assert_text 'Queue 49'
+      assert_no_css '.disabled', text: 'Previous'
+      assert_css '.active', text: '3'
+      assert_css '.disabled', text: 'Next'
     end
   end
 end
