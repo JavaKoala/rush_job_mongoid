@@ -83,5 +83,22 @@ module RushJobMongoid
       assert_css '.active', text: '3'
       assert_css '.disabled', text: 'Next'
     end
+
+    test 'Many pages' do
+      create_jobs(200)
+      visit '/rush_job_mongoid/rush_jobs'
+
+      assert_text '...'
+
+      click_link '9'
+
+      assert_link '1'
+      assert_link '2'
+
+      click_link 'Previous'
+
+      assert_link '7'
+      assert_link '10'
+    end
   end
 end
