@@ -31,6 +31,22 @@ module RushJobMongoid
       (count / JOBS_PER_PAGE.to_f).ceil
     end
 
+    def self.queue_groups
+      groups = collection.aggregate([
+                                      { '$group' => {
+                                        _id: { 'queue' => '$queue', 'priority' => '$priority' }, count: { '$sum' => 1 }
+                                      } }
+                                    ]).to_a
+
+      group_result = []
+
+      groups.each do |group|
+        group_result << { queue: group['_id']['queue'], priority: group['_id']['priority'], count: group['count'] }
+      end
+
+      group_result.sort_by! { |group| [group[:priority], group[:queue]] }
+    end
+
     private
 
     def handler_hash
