@@ -5,7 +5,7 @@ module RushJobMongoid
     test 'root path' do
       visit '/rush_job_mongoid/'
 
-      assert_selector 'h2', text: 'Rush job dashboard'
+      assert_selector 'h3', text: 'Queues'
     end
 
     test 'navigate to jobs page' do
@@ -22,7 +22,7 @@ module RushJobMongoid
       click_link 'Jobs'
       click_link 'Dashboard'
 
-      assert_selector 'h2', text: 'Rush job dashboard'
+      assert_selector 'h3', text: 'Queues'
       find_link('Dashboard', class: 'nav-link active')
       find_link('Jobs', class: 'nav-link')
     end
@@ -32,7 +32,7 @@ module RushJobMongoid
       click_link 'Jobs'
       click_link 'Delayed Jobs'
 
-      assert_selector 'h2', text: 'Rush job dashboard'
+      assert_selector 'h3', text: 'Queues'
     end
   end
 end

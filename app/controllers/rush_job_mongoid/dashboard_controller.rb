@@ -1,5 +1,7 @@
 module RushJobMongoid
   class DashboardController < ApplicationController
-    def index; end
+    def index
+      @queue_groups = RushJob.queue_groups
+    end
   end
 end

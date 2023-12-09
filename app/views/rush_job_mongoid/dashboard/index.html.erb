@@ -1,1 +1,24 @@
-<h2>Rush job dashboard</h2>
+<h3><%= t :queues %></h3>
+
+<div id="rush-job-mongoid-dashboard-queues" class="d-flex justify-content-left">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= t :name %></th>
+          <th><%= t :priority %></th>
+          <th><%= t :count %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @queue_groups.each do |group| %>
+          <tr>
+            <td><%= group[:queue] %></td>
+            <td><%= group[:priority] %></td>
+            <td><%= group[:count] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

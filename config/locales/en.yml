@@ -1,6 +1,7 @@
 en:
   arguments: "Arguments"
   attempts: "Attempts"
+  count: "Count"
   dashboard: "Dashboard"
   delayed_title: "Delayed Jobs"
   failed_at: "Failed at"
@@ -9,6 +10,8 @@ en:
   last_error: "Last error"
   locked_at: "Locked at"
   locked_by: "Locked by"
+  name: "Name"
   priority: "Priority"
   queue: "Queue"
+  queues: "Queues"
   run_at: "Run at"
