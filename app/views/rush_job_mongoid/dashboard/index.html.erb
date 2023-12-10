@@ -22,3 +22,5 @@
     </table>
   </div>
 </div>
+
+<%= render 'layouts/rush_job_mongoid/pagination', controller: 'dashboard', pagination_param: 'queue_groups_page', pages_count: @queue_groups_pages_count, page: @queue_groups_page %>
