@@ -2,7 +2,7 @@ module RushJobMongoid
   class RushJobsController < ApplicationController
     def index
       @page = params[:page]&.to_i || 1
-      @pages_count = RushJobMongoid::RushJob.pages_count
+      @pages_count = RushJobMongoid::RushJob.pages_count(RushJobMongoid::RushJob.count)
       @rush_jobs = RushJob.locked_by_desc.paginate(@page)
     end
   end

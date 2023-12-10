@@ -27,8 +27,8 @@ module RushJobMongoid
       job_data[:arguments].presence || ''
     end
 
-    def self.pages_count
-      (count / JOBS_PER_PAGE.to_f).ceil
+    def self.pages_count(item_count, items_per_page = JOBS_PER_PAGE)
+      (item_count / items_per_page.to_f).ceil
     end
 
     def self.queue_groups
