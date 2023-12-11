@@ -13,6 +13,14 @@ module RushJobMongoid
       DatabaseCleaner.clean
     end
 
+    test 'locked_jobs returns locked jobs' do
+      locked_job = RushJob.create(locked_at: Time.zone.now)
+      RushJob.create
+
+      assert_equal RushJob.locked_jobs.count, 1
+      assert_equal RushJob.locked_jobs.first, locked_job
+    end
+
     test 'job_class returns class of the job' do
       rush_job = RushJob.new
       rush_job.handler = @example_handler
