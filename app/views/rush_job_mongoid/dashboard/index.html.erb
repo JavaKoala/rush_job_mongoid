@@ -1,3 +1,32 @@
+<h3><%= t :locked_jobs %></h3>
+
+<div id="rush-job-mongoid-dashboard-locked-jobs" class="d-flex justify-content-left">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= t :id %></th>
+          <th><%= t :locked_at %></th>
+          <th><%= t :locked_by %></th>
+          <th><%= t :job_class %></th>
+          <th><%= t :arguments %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @locked_jobs.each do |job| %>
+          <tr>
+            <td><%= job.id %></td>
+            <td><%= job.locked_at %></td>
+            <td><%= job.locked_by %></td>
+            <td><%= job.job_class %></td>
+            <td><%= job.job_arguments %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <h3><%= t :queues %></h3>
 
 <div id="rush-job-mongoid-dashboard-queues" class="d-flex justify-content-left">
