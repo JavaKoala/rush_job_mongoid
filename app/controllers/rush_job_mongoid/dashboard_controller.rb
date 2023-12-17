@@ -1,7 +1,9 @@
 module RushJobMongoid
   class DashboardController < ApplicationController
     def index
-      @locked_jobs = RushJob.locked_jobs.locked_by_desc
+      @locked_jobs_page = params[:locked_jobs_page]&.to_i || 1
+      @locked_jobs_pages_count = RushJob.pages_count(RushJob.locked_jobs.count)
+      @locked_jobs = RushJob.locked_jobs.locked_by_desc.paginate(@locked_jobs_page)
 
       @queue_groups_page = params[:queue_groups_page]&.to_i || 1
       @rush_job_queue_groups = RushJob.queue_groups
