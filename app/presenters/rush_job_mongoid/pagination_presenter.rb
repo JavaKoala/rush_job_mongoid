@@ -7,7 +7,7 @@ module RushJobMongoid
     def page
       page = @page_param&.to_i || 1
 
-      page < 1 ? 1 : page
+      [page, 1].max
     end
 
     def pages(item_count, items_per_page)
