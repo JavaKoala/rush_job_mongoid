@@ -97,5 +97,22 @@ module RushJobMongoid
         assert_css '.disabled', text: 'Next'
       end
     end
+
+    test 'Pagination links work together' do
+      create_jobs
+      visit '/rush_job_mongoid'
+
+      within 'div#rush-job-mongoid-dashboard-queues' do
+        click_link 'Next'
+        assert_text 'Queue 10'
+      end
+
+      within 'div#rush-job-mongoid-dashboard-locked-jobs' do
+        click_link 'Next'
+        assert_no_text 'Locked 9'
+      end
+
+      assert_text 'Queue 10'
+    end
   end
 end
