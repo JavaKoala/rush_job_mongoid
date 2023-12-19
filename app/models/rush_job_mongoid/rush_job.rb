@@ -18,7 +18,7 @@ module RushJobMongoid
 
     scope :locked_jobs, -> { where(:locked_at.exists => true) }
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
-    scope :paginate, ->(page) { limit(JOBS_PER_PAGE).skip(JOBS_PER_PAGE * (page - 1)) }
+    scope :paginate, ->(page, jobs_per_page = JOBS_PER_PAGE) { limit(jobs_per_page).skip(jobs_per_page * (page - 1)) }
 
     def job_class
       job_data[:job_class]

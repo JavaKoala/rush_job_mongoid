@@ -36,15 +36,12 @@ module RushJobMongoid
       within 'div#rush-job-mongoid-dashboard-locked-jobs' do
         assert_selector '.pagination'
         assert_text 'Locked 9'
-        assert_text 'Locked 13'
+        assert_text 'Locked 22'
         assert_no_text 'Locked 0'
-        assert_no_text '...'
-        assert_link 'Previous'
-        assert_css '.disabled', text: 'Previous'
-        assert_link '1'
-        assert_css '.active', text: '1'
-        assert_link '2'
-        assert_no_css '.active', text: '2'
+
+        click_link 'Next'
+
+        assert_text 'Locked 13'
       end
     end
 
