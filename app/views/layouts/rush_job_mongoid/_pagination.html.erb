@@ -1,13 +1,12 @@
 <% if pages_count > 1 %>
   <nav aria-label="page navigation">
     <ul class="pagination">
-      <li class="page-item">
-        <% if page > 1 %>
-          <%= link_to 'Previous', { controller: controller, params: request.parameters.merge(pagination_param => page - 1) }, class: 'page-link' %>
-        <% else %>
-          <%= link_to 'Previous', { controller: controller, params: request.parameters.merge(pagination_param => page) }, class: 'page-link disabled' %>
-        <% end %>
-      </li>
+      <%= render 'layouts/rush_job_mongoid/pagination_link',
+          link_display: t(:previous),
+          controller: controller,
+          pagination_param: pagination_param,
+          page: page - 1,
+          link_class: page > 1 ? 'page-link' : 'page-link disabled' %>
 
       <% if pages_count < 5 %>
         <% (1..pages_count).each do |page_n| %>
