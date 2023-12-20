@@ -13,6 +13,7 @@ en:
   locked_by: "Locked by"
   locked_jobs: "Locked Jobs"
   name: "Name"
+  next: "Next"
   previous: "Previous"
   priority: "Priority"
   queue: "Queue"

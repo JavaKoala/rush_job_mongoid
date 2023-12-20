@@ -44,13 +44,12 @@
         </li>
       <% end %>
 
-      <li class="page-item">
-        <% if page < pages_count %>
-          <%= link_to 'Next', { controller: controller, params: request.parameters.merge(pagination_param => page + 1) }, class: 'page-link' %>
-        <% else %>
-          <%= link_to 'Next', { controller: controller, params: request.parameters.merge(pagination_param => page) }, class: 'page-link disabled' %>
-        <% end %>
-      </li>
+      <%= render 'layouts/rush_job_mongoid/pagination_link',
+          link_display: t(:next),
+          controller: controller,
+          pagination_param: pagination_param,
+          page: page + 1,
+          link_class: page < pages_count ? 'page-link' : 'page-link disabled' %>
     </ul>
   </nav>
 <% end %>
