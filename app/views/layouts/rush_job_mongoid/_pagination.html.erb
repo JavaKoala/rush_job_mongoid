@@ -10,9 +10,12 @@
 
       <% if pages_count < 5 %>
         <% (1..pages_count).each do |page_n| %>
-          <li class="page-item">
-            <%= link_to page_n, { controller: controller, params: request.parameters.merge(pagination_param => page_n) }, class: "page-link #{'active' if page == page_n}" %>
-          </li>
+          <%= render 'layouts/rush_job_mongoid/pagination_link',
+              link_display: page_n,
+              controller: controller,
+              pagination_param: pagination_param,
+              page: page_n,
+              link_class: page == page_n ? 'page-link active' : 'page-link' %>
         <% end %>
       <% else %>
         <% if page < 3 || page >= pages_count - 1 %>
