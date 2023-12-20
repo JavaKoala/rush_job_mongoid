@@ -90,14 +90,14 @@ module RushJobMongoid
 
       assert_text '...'
 
-      click_link '9'
+      click_link '10'
 
       assert_link '1'
-      assert_link '2'
+      assert_link '9'
 
       click_link 'Previous'
 
-      assert_link '7'
+      assert_link '8'
       assert_link '10'
     end
   end
