@@ -22,6 +22,19 @@
           <li class="nav-item">
             <%= link_to t(:jobs), rush_jobs_path, class: "nav-link#{' active' if current_page?(rush_jobs_path)}" %>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               data-bs-toggle="dropdown"
+               href="#" role="button"
+               aria-haspopup="true"
+               aria-expanded="false">
+               Options
+            </a>
+            <div class="dropdown-menu"
+                 data-bs-popper="static">
+              <%= button_to t("#{invert_theme}_mode"), settings_path, class: "nav-link", method: :patch, params: { setting: 'theme' } %>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
