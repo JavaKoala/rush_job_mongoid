@@ -1,4 +1,4 @@
-<h3><%= t :locked_jobs %></h3>
+<h3 class="text-body"><%= t :locked_jobs %></h3>
 
 <div id="rush-job-mongoid-dashboard-locked-jobs">
   <div class="d-flex justify-content-left">
@@ -31,7 +31,7 @@
   <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(RushJobMongoid::RushJob.locked_jobs.count, 10), page: @locked_jobs_presenter.page %>
 </div>
 
-<h3><%= t :queues %></h3>
+<h3 class="text-body"><%= t :queues %></h3>
 
 <div id="rush-job-mongoid-dashboard-queues">
   <div class="d-flex justify-content-left">

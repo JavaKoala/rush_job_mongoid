@@ -12,7 +12,7 @@ module RushJobMongoid
       visit '/rush_job_mongoid/'
       click_link 'Jobs'
 
-      assert_selector 'h2', text: 'Welcome to RushJob MongoDB'
+      assert_selector 'h3', text: 'Delayed Jobs'
       find_link('Dashboard', class: 'nav-link')
       find_link('Jobs', class: 'nav-link active')
     end
