@@ -1,7 +1,7 @@
 <% if pages_count > 1 %>
   <nav aria-label="page navigation">
     <ul class="pagination">
-      <%= render 'layouts/rush_job_mongoid/pagination_link',
+      <%= render 'rush_job_mongoid/shared/pagination_link',
           link_display: t(:previous),
           controller: controller,
           pagination_param: pagination_param,
@@ -10,7 +10,7 @@
 
       <% if pages_count < 5 %>
         <% (1..pages_count).each do |page_n| %>
-          <%= render 'layouts/rush_job_mongoid/pagination_link',
+          <%= render 'rush_job_mongoid/shared/pagination_link',
               link_display: page_n,
               controller: controller,
               pagination_param: pagination_param,
@@ -19,7 +19,7 @@
         <% end %>
       <% else %>
         <% if page != 2 %>
-          <%= render 'layouts/rush_job_mongoid/pagination_link',
+          <%= render 'rush_job_mongoid/shared/pagination_link',
               link_display: '1',
               controller: controller,
               pagination_param: pagination_param,
@@ -28,7 +28,7 @@
         <% end %>
 
         <% if page == 1 %>
-          <%= render 'layouts/rush_job_mongoid/pagination_link',
+          <%= render 'rush_job_mongoid/shared/pagination_link',
               link_display: '2',
               controller: controller,
               pagination_param: pagination_param,
@@ -44,7 +44,7 @@
 
         <% if page > 1 && page < pages_count %>
           <% ((page - 1)..(page + 1)).each do |page_n| %>
-            <%= render 'layouts/rush_job_mongoid/pagination_link',
+            <%= render 'rush_job_mongoid/shared/pagination_link',
                 link_display: page_n,
                 controller: controller,
                 pagination_param: pagination_param,
@@ -60,7 +60,7 @@
         <% end %>
 
         <% if page == pages_count %>
-          <%= render 'layouts/rush_job_mongoid/pagination_link',
+          <%= render 'rush_job_mongoid/shared/pagination_link',
               link_display: pages_count - 1,
               controller: controller,
               pagination_param: pagination_param,
@@ -69,7 +69,7 @@
         <% end %>
 
         <% if page != pages_count - 1 %>
-          <%= render 'layouts/rush_job_mongoid/pagination_link',
+          <%= render 'rush_job_mongoid/shared/pagination_link',
               link_display: pages_count,
               controller: controller,
               pagination_param: pagination_param,
@@ -78,7 +78,7 @@
         <% end %>
       <% end %>
 
-      <%= render 'layouts/rush_job_mongoid/pagination_link',
+      <%= render 'rush_job_mongoid/shared/pagination_link',
           link_display: t(:next),
           controller: controller,
           pagination_param: pagination_param,

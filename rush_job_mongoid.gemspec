@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version     = RushJobMongoid::VERSION
   spec.authors     = ['JavaKoala']
   spec.email       = ['javakoala1@gmail.com']
-  spec.homepage    = 'https://github.com/JavaKoala/rush_job_mongo_id'
+  spec.homepage    = 'https://github.com/JavaKoala/rush_job_mongoid'
   spec.summary     = 'User interface for delayed_job with MongoDB'
   spec.description = 'Rails web interface for delayed_job using Rails::Engine and MongoDB'
   spec.license     = 'MIT'
@@ -16,8 +16,8 @@ Gem::Specification.new do |spec|
   # spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/JavaKoala/rush_job_mongo_id'
-  spec.metadata['changelog_uri'] = 'https://github.com/JavaKoala/rush_job_mongo_id'
+  spec.metadata['source_code_uri'] = 'https://github.com/JavaKoala/rush_job_mongoid'
+  spec.metadata['changelog_uri'] = 'https://github.com/JavaKoala/rush_job_mongoid'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']

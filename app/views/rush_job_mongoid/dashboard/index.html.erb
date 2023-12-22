@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <%= render 'layouts/rush_job_mongoid/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(RushJobMongoid::RushJob.locked_jobs.count, 10), page: @locked_jobs_presenter.page %>
+  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(RushJobMongoid::RushJob.locked_jobs.count, 10), page: @locked_jobs_presenter.page %>
 </div>
 
 <h3><%= t :queues %></h3>
@@ -57,5 +57,5 @@
     </div>
   </div>
 
-  <%= render 'layouts/rush_job_mongoid/pagination', controller: 'dashboard', pagination_param: 'queue_groups_page', pages_count: @queue_groups_presenter.pages(@rush_job_queue_groups.count, 10), page: @queue_groups_presenter.page %>
+  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'queue_groups_page', pages_count: @queue_groups_presenter.pages(@rush_job_queue_groups.count, 10), page: @queue_groups_presenter.page %>
 </div>

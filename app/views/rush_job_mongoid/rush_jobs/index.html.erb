@@ -33,4 +33,4 @@
   </tbody>
 </table>
 
-<%= render 'layouts/rush_job_mongoid/pagination', controller: 'rush_jobs', pagination_param: 'page', pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.count, 20), page: @pagination_presenter.page %>
+<%= render 'rush_job_mongoid/shared/pagination', controller: 'rush_jobs', pagination_param: 'page', pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.count, 20), page: @pagination_presenter.page %>
