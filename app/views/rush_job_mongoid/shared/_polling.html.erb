@@ -1,0 +1,32 @@
+<div data-controller="rush-job-mongoid-polling">
+  <div class="row align-items-center">
+    <div class="col-3">
+      <label for="rush-job-mongoid-polling-range"
+             class="polling-range-form-label-<%= invert_theme %>"
+             data-rush-job-mongoid-polling-target="pollingTimeLabel">
+        <%= t :polling_time %> 13 <%= t :polling_time_unit %>
+      </label>
+      <input id="rush-job-mongoid-polling-range"
+             type="range"
+             class="form-range"
+             min="0"
+             max="6"
+             data-rush-job-mongoid-polling-target="pollingTime"
+             data-action="input->rush-job-mongoid-polling#pollingChange">
+    </div>
+    <div class="col-3">
+      <div class="form-check form-switch">
+        <input id="rush-job-mongoid-polling"
+               class="form-check-input"
+               type="checkbox"
+               role="switch"
+               data-rush-job-mongoid-polling-target="pollingSlide"
+               data-action="input->rush-job-mongoid-polling#pollingToggle">
+        <label class="form-check-label-<%= invert_theme %>" for="rush-job-mongoid-polling"><%= t :enable_polling %></label>
+      </div>
+    </div>
+    <div class="col-3" data-controller="rush-job-mongoid-reload-jobs-table">
+      <button class="btn btn-primary" data-action="click->rush-job-mongoid-reload-jobs-table#reloadJobs"><%= t :reload %></button>
+    </div>
+  </div>
+</div>
