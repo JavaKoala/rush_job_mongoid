@@ -1,0 +1,59 @@
+<div id="rush-job-mongoid-dashboard-locked-jobs">
+  <div class="d-flex justify-content-left">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= t :id %></th>
+            <th><%= t :locked_at %></th>
+            <th><%= t :locked_by %></th>
+            <th><%= t :job_class %></th>
+            <th><%= t :arguments %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @locked_jobs.each do |job| %>
+            <tr>
+              <td><%= job.id %></td>
+              <td><%= job.locked_at %></td>
+              <td><%= job.locked_by %></td>
+              <td><%= job.job_class %></td>
+              <td><%= job.job_arguments %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(RushJobMongoid::RushJob.locked_jobs.count, 10), page: @locked_jobs_presenter.page %>
+</div>
+
+<h3 class="text-body"><%= t :queues %></h3>
+
+<div id="rush-job-mongoid-dashboard-queues">
+  <div class="d-flex justify-content-left">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= t :name %></th>
+            <th><%= t :priority %></th>
+            <th><%= t :count %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @queue_groups.each do |group| %>
+            <tr>
+              <td><%= group[:queue] %></td>
+              <td><%= group[:priority] %></td>
+              <td><%= group[:count] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'queue_groups_page', pages_count: @queue_groups_presenter.pages(@rush_job_queue_groups.count, 10), page: @queue_groups_presenter.page %>
+</div>

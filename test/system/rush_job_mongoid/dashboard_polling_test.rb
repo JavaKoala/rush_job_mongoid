@@ -1,6 +1,6 @@
 require 'application_system_test_case'
 
-module RushJob
+module RushJobMongoid
   class DashboardPollingTest < ApplicationSystemTestCase
     test 'dashboard polling' do
       visit '/rush_job_mongoid'
