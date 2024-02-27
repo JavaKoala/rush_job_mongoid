@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 import Rails from '@rails/ujs';
 
-export default class RushJobMongoidTableUpdateController extends Controller {
+export class RushJobMongoidTableUpdateController extends Controller {
   updateJobs() {
     this.blurTable();
 

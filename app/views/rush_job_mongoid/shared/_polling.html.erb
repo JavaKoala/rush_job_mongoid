@@ -25,8 +25,8 @@
         <label class="form-check-label-<%= invert_theme %>" for="rush-job-mongoid-polling"><%= t :enable_polling %></label>
       </div>
     </div>
-    <div class="col-3" data-controller="rush-job-mongoid-table-update">
-      <button class="btn btn-primary" data-action="click->rush-job-mongoid-table-update#updateJobs"><%= t :reload %></button>
+    <div class="col-3" data-controller="rush-job-mongoid-reload-jobs-table">
+      <button class="btn btn-primary" data-action="click->rush-job-mongoid-reload-jobs-table#reloadJobs"><%= t :reload %></button>
     </div>
   </div>
 </div>
