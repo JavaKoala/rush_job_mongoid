@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= t :priority %></th>
+      <th><%= t :attempts %></th>
+      <th><%= t :job_class %></th>
+      <th><%= t :arguments %></th>
+      <th><%= t :run_at %></th>
+      <th><%= t :locked_at %></th>
+      <th><%= t :locked_by %></th>
+      <th><%= t :failed_at %></th>
+      <th><%= t :last_error %></th>
+      <th><%= t :queue %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rush_jobs.each do |job| %>
+      <tr>
+        <td><%= job.priority %></td>
+        <td><%= job.attempts %></td>
+        <td><%= job.job_class %></td>
+        <td><%= job.job_arguments %></td>
+        <td><%= job.run_at %></td>
+        <td><%= job.locked_at %></td>
+        <td><%= job.locked_by %></td>
+        <td><%= job.failed_at %></td>
+        <td><%= job.last_error %></td>
+        <td><%= job.queue %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render 'rush_job_mongoid/shared/pagination', controller: 'rush_jobs', pagination_param: 'page', pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.count, 20), page: @pagination_presenter.page %>
