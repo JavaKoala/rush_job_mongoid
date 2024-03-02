@@ -42,6 +42,10 @@ module RushJobMongoid
       group_result.sort_by! { |group| [group[:priority], group[:queue]] }
     end
 
+    def self.clear_queue(queue_name, queue_priority)
+      where(queue: queue_name, priority: queue_priority).delete_all
+    end
+
     private
 
     def handler_hash

@@ -37,7 +37,7 @@ module RushJobMongoid
 
     test 'queue_groups counts queue and priority' do
       2.times do
-        RushJob.create(handler: @example_handler, priority: 0, queue: 'defualt')
+        RushJob.create(handler: @example_handler, priority: 0, queue: 'default')
       end
 
       3.times do
@@ -46,9 +46,29 @@ module RushJobMongoid
 
       RushJob.create(handler: @example_handler, priority: 0, queue: 'queue1')
 
-      expected_groups = [{ queue: 'defualt', priority: 0, count: 2 }, { queue: 'queue1', priority: 0, count: 1 },
+      expected_groups = [{ queue: 'default', priority: 0, count: 2 }, { queue: 'queue1', priority: 0, count: 1 },
                          { queue: 'queue1', priority: 1, count: 3 }]
       assert_equal RushJob.queue_groups, expected_groups
+    end
+
+    test 'clear queue deletes jobs by priority' do
+      2.times do |n|
+        RushJob.create(handler: @example_handler, priority: n, queue: 'default')
+      end
+
+      RushJob.clear_queue('default', 0)
+
+      assert_equal RushJob.queue_groups, [{ queue: 'default', priority: 1, count: 1 }]
+    end
+
+    test 'clear queue deletes jobs by queue name' do
+      2.times do |n|
+        RushJob.create(handler: @example_handler, priority: 0, queue: "default#{n}")
+      end
+
+      RushJob.clear_queue('default0', 0)
+
+      assert_equal RushJob.queue_groups, [{ queue: 'default1', priority: 0, count: 1 }]
     end
   end
 end
