@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'User interface for delayed_job with MongoDB'
   spec.description = 'Rails web interface for delayed_job using Rails::Engine and MongoDB'
   spec.license     = 'MIT'
-  spec.required_ruby_version = '>= 3.2.0'
+  spec.required_ruby_version = '>= 3.3.0'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
   # to allow pushing to a single host or delete this section to allow pushing to any host.
