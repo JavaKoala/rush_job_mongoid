@@ -1,6 +1,8 @@
 en:
   arguments: "Arguments"
   attempts: "Attempts"
+  clear: "Clear"
+  clear_queue_confirmation: "Are you sure you want to clear queue %{queue}?"
   cleared_queue: "Cleared queue %{queue}"
   count: "Count"
   dark_mode: "Dark Mode"
