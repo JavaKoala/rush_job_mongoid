@@ -36,11 +36,12 @@ module RushJobMongoid
           click_button('Clear', match: :first)
         end
 
-#        assert_text 'Cleared queue Queue 0'
+        assert_text 'Cleared queue Queue 0'
 
         click_button 'Reload'
       end
 
+      assert_no_text 'Cleared queue Queue 0'
       assert_no_text 'Queue 0'
       assert_text 'Queue 1'
     end

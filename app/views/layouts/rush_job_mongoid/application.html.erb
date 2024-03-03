@@ -11,11 +11,14 @@
   <%= stylesheet_link_tag "rush_job_mongoid/application", media: "all" %>
 </head>
 <body data-bs-theme=<%= current_theme %>>
-<%= render 'layouts/rush_job_mongoid/navbar' %>
+  <%= render 'layouts/rush_job_mongoid/navbar' %>
+  <div id="rush-job-mongoid-flash-messages">
+    <%= render 'layouts/rush_job_mongoid/flash_messages' %>
+  </div>
 
-<div class="jobs-container">
-  <%= yield %>
-</div>
+  <div class="jobs-container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
