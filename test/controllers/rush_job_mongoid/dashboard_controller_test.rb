@@ -62,5 +62,16 @@ module RushJobMongoid
         end
       end
     end
+
+    test 'should clear queue' do
+      RushJob.create(queue: 'JobQueue0', priority: 2)
+
+      assert_difference 'RushJob.queue_groups.count', -1 do
+        delete '/rush_job_mongoid/dashboard', params: { queue: 'JobQueue0', priority: 2 }
+
+        assert_redirected_to root_path
+        assert_equal 'Cleared queue JobQueue0', flash[:success]
+      end
+    end
   end
 end

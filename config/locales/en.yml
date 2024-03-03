@@ -1,6 +1,7 @@
 en:
   arguments: "Arguments"
   attempts: "Attempts"
+  cleared_queue: "Cleared queue %{queue}"
   count: "Count"
   dark_mode: "Dark Mode"
   dashboard: "Dashboard"
