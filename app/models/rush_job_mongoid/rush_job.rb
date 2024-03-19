@@ -17,6 +17,7 @@ module RushJobMongoid
     scope :locked_jobs, -> { where(:locked_at.exists => true) }
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
     scope :paginate, ->(page, jobs_per_page) { limit(jobs_per_page).skip(jobs_per_page * (page - 1)) }
+    scope :by_doc_id, ->(doc_id) { where(_id: doc_id) if doc_id.present? }
 
     def job_class
       job_data[:job_class]
@@ -44,6 +45,10 @@ module RushJobMongoid
 
     def self.clear_queue(queue_name, queue_priority)
       where(queue: queue_name, priority: queue_priority).delete_all
+    end
+
+    def self.filter(filter_params)
+      by_doc_id(filter_params[:doc_id])
     end
 
     private

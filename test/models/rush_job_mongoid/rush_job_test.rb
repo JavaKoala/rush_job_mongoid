@@ -21,6 +21,20 @@ module RushJobMongoid
       assert_equal RushJob.locked_jobs.first, locked_job
     end
 
+    test 'by_doc_id returns documents by id' do
+      job1 = RushJob.create(locked_at: Time.zone.now)
+      RushJob.create(locked_at: Time.zone.now)
+
+      assert_equal RushJob.by_doc_id(job1.id), [job1]
+    end
+
+    test 'by_doc_id returns all docs when the doc_id is not present' do
+      job1 = RushJob.create(locked_at: Time.zone.now)
+      job2 = RushJob.create(locked_at: Time.zone.now)
+
+      assert_equal RushJob.by_doc_id(nil), [job1, job2]
+    end
+
     test 'job_class returns class of the job' do
       rush_job = RushJob.new
       rush_job.handler = @example_handler
@@ -69,6 +83,13 @@ module RushJobMongoid
       RushJob.clear_queue('default0', 0)
 
       assert_equal RushJob.queue_groups, [{ queue: 'default1', priority: 0, count: 1 }]
+    end
+
+    test 'filter filters by document id' do
+      job1 = RushJob.create(locked_at: Time.zone.now)
+      RushJob.create(locked_at: Time.zone.now)
+
+      assert_equal RushJob.filter({ doc_id: job1.id }), [job1]
     end
   end
 end

@@ -27,11 +27,7 @@ module RushJobMongoid
     end
 
     def locked_jobs_filter
-      if filter_params[:doc_id].present?
-        RushJob.where(_id: filter_params[:doc_id]).locked_jobs.locked_by_desc.paginate(@locked_jobs_presenter.page, 10)
-      else
-        RushJob.locked_jobs.locked_by_desc.paginate(@locked_jobs_presenter.page, 10)
-      end
+      RushJob.filter(filter_params).locked_jobs.locked_by_desc.paginate(@locked_jobs_presenter.page, 10)
     end
   end
 end
