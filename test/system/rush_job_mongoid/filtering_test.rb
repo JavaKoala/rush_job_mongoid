@@ -41,6 +41,10 @@ module RushJobMongoid
       click_button 'Filter'
 
       assert_no_text @job2.id.to_s
+
+      click_link 'Filter'
+
+      assert_field 'id:', with: @job1.id.to_s
     end
   end
 end
