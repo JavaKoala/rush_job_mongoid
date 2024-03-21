@@ -12,7 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @locked_jobs.each do |job| %>
+          <% @locked_jobs.paginate(@locked_jobs_presenter.page).each do |job| %>
             <tr>
               <td><%= job.id %></td>
               <td><%= job.locked_at %></td>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(RushJobMongoid::RushJob.locked_jobs.count, 10), page: @locked_jobs_presenter.page %>
+  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(@locked_jobs.jobs.count, 10), page: @locked_jobs_presenter.page %>
 </div>
 
 <h3 class="text-body"><%= t :queues %></h3>

@@ -2,7 +2,7 @@ module RushJobMongoid
   class DashboardController < ApplicationController
     def index
       @locked_jobs_presenter = PaginationPresenter.new(params[:locked_jobs_page])
-      @locked_jobs = locked_jobs_filter
+      @locked_jobs = LockedJobs.new(filter_params)
 
       @queue_groups_presenter = PaginationPresenter.new(params[:queue_groups_page])
       @rush_job_queue_groups = RushJob.queue_groups
@@ -24,10 +24,6 @@ module RushJobMongoid
 
     def filter_params
       params.permit(:doc_id)
-    end
-
-    def locked_jobs_filter
-      RushJob.filter(filter_params).locked_jobs.locked_by_desc.paginate(@locked_jobs_presenter.page, 10)
     end
   end
 end
