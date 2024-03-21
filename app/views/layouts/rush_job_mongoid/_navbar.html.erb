@@ -62,7 +62,7 @@
         <h1 class="modal-title fs-5" id="rushJobMongoidModalLabel">Filter jobs</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <%= form_with url: root_path, method: :get do |form| %>
+      <%= form_with url: request.path, method: :get do |form| %>
         <div class="modal-body">
           <%= form.label :doc_id, "id:", class: 'form-label'  %>
           <%= form.text_field :doc_id, value: params[:doc_id], class: 'form-control' %>

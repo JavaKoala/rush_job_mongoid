@@ -1,7 +1,7 @@
 require 'application_system_test_case'
 
 module RushJobMongoid
-  class FilteringTest < ApplicationSystemTestCase
+  class DashboardFilteringTest < ApplicationSystemTestCase
     setup do
       DatabaseCleaner.start
 
