@@ -47,5 +47,15 @@ module RushJobMongoid
 
       assert_field 'id:', with: @job1.id.to_s
     end
+
+    test 'maintain filters between pages' do
+      visit '/rush_job_mongoid/rush_jobs'
+      click_link 'Filter'
+      fill_in 'id', with: @job1.id.to_s
+      click_button 'Filter'
+      click_link 'Jobs'
+
+      assert_no_text @job2.id.to_s
+    end
   end
 end
