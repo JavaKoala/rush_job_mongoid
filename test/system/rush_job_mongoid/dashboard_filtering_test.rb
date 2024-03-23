@@ -39,14 +39,14 @@ module RushJobMongoid
 
       assert_text 'Filter jobs'
 
-      fill_in 'id', with: @job1.id.to_s
+      fill_in 'Id', with: @job1.id.to_s
       click_button 'Filter'
 
       assert_no_text @job2.id.to_s
 
       click_link 'Filter'
 
-      assert_field 'id:', with: @job1.id.to_s
+      assert_field 'Id', with: @job1.id.to_s
     end
 
     test 'filter by priority' do
@@ -62,7 +62,7 @@ module RushJobMongoid
     test 'maintain filters between pages' do
       visit '/rush_job_mongoid/'
       click_link 'Filter'
-      fill_in 'id', with: @job1.id.to_s
+      fill_in 'Id', with: @job1.id.to_s
       click_button 'Filter'
       click_link 'Jobs'
 

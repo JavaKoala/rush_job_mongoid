@@ -2,20 +2,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="rushJobMongoidModalLabel">Filter jobs</h1>
+        <h1 class="modal-title fs-5" id="rushJobMongoidModalLabel"><%= t(:filter_jobs) %></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <%= form_with url: request.path, method: :get do |form| %>
         <div class="modal-body">
-          <%= form.label :doc_id, "id:", class: 'form-label'  %>
+          <%= form.label :doc_id, t(:id), class: 'form-label'  %>
           <%= form.text_field :doc_id, value: params[:doc_id], class: 'form-control' %>
 
-          <%= form.label :priority, "Priority:", class: 'form-label'  %>
+          <%= form.label :priority, t(:priority), class: 'form-label'  %>
           <%= form.number_field :priority, value: params[:priority], class: 'form-control' %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <%= form.submit "Filter", class: 'btn btn-primary' %>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t(:close) %></button>
+          <%= form.submit t(:filter), class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
