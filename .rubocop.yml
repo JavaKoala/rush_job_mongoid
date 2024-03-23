@@ -13,3 +13,7 @@ Style/FrozenStringLiteralComment:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/ClassLength:
+  Exclude:
+    - "test/models/rush_job_mongoid/*.rb"
