@@ -6,7 +6,7 @@ module RushJobMongoid
       DatabaseCleaner.start
 
       @job1 = RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
-                                      "job_data:\n  job_class: TestHandler\n  arguments:\n  - arg1",
+                                      "job_data:\n  job_class: Job1Handler\n  arguments:\n  - arg1",
                              run_at: Time.zone.now,
                              locked_at: Time.zone.now,
                              locked_by: 'Server 1',
@@ -17,7 +17,7 @@ module RushJobMongoid
                              queue: 'Queue 1')
 
       @job2 = RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
-                                      "job_data:\n  job_class: TestHandler\n  arguments:\n  - arg1",
+                                      "job_data:\n  job_class: Job2Handler\n  arguments:\n  - arg2",
                              run_at: Time.zone.now,
                              locked_at: Time.zone.now,
                              locked_by: 'Server 2',
@@ -65,6 +65,16 @@ module RushJobMongoid
       visit '/rush_job_mongoid/'
       click_link 'Filter'
       fill_in 'Attempts', with: @job1.attempts
+      click_button 'Filter'
+
+      assert_text @job1.id.to_s
+      assert_no_text @job2.id.to_s
+    end
+
+    test 'filter by job class' do
+      visit '/rush_job_mongoid/'
+      click_link 'Filter'
+      fill_in 'Job class', with: 'Job1Handler'
       click_button 'Filter'
 
       assert_text @job1.id.to_s

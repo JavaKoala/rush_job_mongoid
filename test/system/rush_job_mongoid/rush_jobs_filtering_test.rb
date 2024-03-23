@@ -6,7 +6,7 @@ module RushJobMongoid
       DatabaseCleaner.start
 
       @job1 = RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
-                                      "job_data:\n  job_class: TestHandler\n  arguments:\n  - arg1",
+                                      "job_data:\n  job_class: TestHandler1\n  arguments:\n  - arg1",
                              run_at: Time.zone.now,
                              locked_at: Time.zone.now,
                              locked_by: 'Server 1',
@@ -17,7 +17,7 @@ module RushJobMongoid
                              queue: 'Queue 1')
 
       @job2 = RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
-                                      "job_data:\n  job_class: TestHandler\n  arguments:\n  - arg1",
+                                      "job_data:\n  job_class: TestHandler2\n  arguments:\n  - arg2",
                              run_at: Time.zone.now,
                              locked_at: Time.zone.now,
                              locked_by: 'Server 2',
@@ -70,6 +70,16 @@ module RushJobMongoid
 
       assert_text @job1.queue
       assert_no_text @job2.queue
+    end
+
+    test 'filter by job class' do
+      visit '/rush_job_mongoid/rush_jobs'
+      click_link 'Filter'
+      fill_in 'Job class', with: 'TestHandler1'
+      click_button 'Filter'
+
+      assert_text 'TestHandler1'
+      assert_no_text 'TestHandler2'
     end
 
     test 'maintain filters between pages' do
