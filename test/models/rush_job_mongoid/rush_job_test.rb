@@ -63,6 +63,34 @@ module RushJobMongoid
       assert_equal RushJob.by_attempts(nil).count, 2
     end
 
+    test 'by_job_class returns documents by attempt' do
+      job = RushJob.create(handler: 'foo test bar')
+      RushJob.create(handler: 'foobar')
+
+      assert_equal RushJob.by_job_class('Test'), [job]
+    end
+
+    test 'by_job_class returns all docs when the attempts are not present' do
+      RushJob.create(handler: 'foo test bar')
+      RushJob.create(handler: 'foobar')
+
+      assert_equal RushJob.by_job_class(nil).count, 2
+    end
+
+    test 'by_arguments returns documents by arguemnt' do
+      job = RushJob.create(handler: 'foo test bar')
+      RushJob.create(handler: 'foobar')
+
+      assert_equal RushJob.by_arguments('Test'), [job]
+    end
+
+    test 'by_arguments returns all docs when the arguments are not present' do
+      RushJob.create(handler: 'foo test bar')
+      RushJob.create(handler: 'foobar')
+
+      assert_equal RushJob.by_arguments(nil).count, 2
+    end
+
     test 'job_class returns class of the job' do
       rush_job = RushJob.new
       rush_job.handler = @example_handler
@@ -132,6 +160,20 @@ module RushJobMongoid
       RushJob.create(attempts: 2)
 
       assert_equal RushJob.filter({ attempts: 1 }), [job1]
+    end
+
+    test 'filter filters by job class' do
+      job1 = RushJob.create(handler: 'foo test bar')
+      RushJob.create(handler: 'foobar')
+
+      assert_equal RushJob.filter({ job_class: 'Test' }), [job1]
+    end
+
+    test 'filter filters by argumments' do
+      job1 = RushJob.create(handler: 'foo test bar')
+      RushJob.create(handler: 'foobar')
+
+      assert_equal RushJob.filter({ arguments: 'Test' }), [job1]
     end
   end
 end

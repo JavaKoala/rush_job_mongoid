@@ -20,6 +20,8 @@ module RushJobMongoid
     scope :by_doc_id, ->(doc_id) { where(_id: doc_id) if doc_id.present? }
     scope :by_priority, ->(queue_priority) { where(priority: queue_priority) if queue_priority.present? }
     scope :by_attempts, ->(attempt_number) { where(attempts: attempt_number) if attempt_number.present? }
+    scope :by_job_class, ->(job_class) { where(handler: /#{job_class}/i) if job_class.present? }
+    scope :by_arguments, ->(job_arguments) { where(handler: /#{job_arguments}/i) if job_arguments.present? }
 
     def job_class
       job_data[:job_class]
@@ -50,7 +52,11 @@ module RushJobMongoid
     end
 
     def self.filter(filter_params)
-      by_doc_id(filter_params[:doc_id]).by_priority(filter_params[:priority]).by_attempts(filter_params[:attempts])
+      by_doc_id(filter_params[:doc_id])
+        .by_priority(filter_params[:priority])
+        .by_attempts(filter_params[:attempts])
+        .by_job_class(filter_params[:job_class])
+        .by_arguments(filter_params[:arguments])
     end
 
     private
