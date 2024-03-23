@@ -13,6 +13,7 @@ module RushJobMongoid
                              failed_at: Time.zone.now,
                              last_error: '',
                              priority: 0,
+                             attempts: 1,
                              queue: 'Queue 1')
 
       @job2 = RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
@@ -23,6 +24,7 @@ module RushJobMongoid
                              failed_at: Time.zone.now,
                              last_error: '',
                              priority: 1,
+                             attempts: 2,
                              queue: 'Queue 2')
     end
 
@@ -58,6 +60,16 @@ module RushJobMongoid
 
       assert_text @job2.queue
       assert_no_text @job1.queue
+    end
+
+    test 'filter by attempts' do
+      visit '/rush_job_mongoid/rush_jobs'
+      click_link 'Filter'
+      fill_in 'Attempts', with: @job1.attempts
+      click_button 'Filter'
+
+      assert_text @job1.queue
+      assert_no_text @job2.queue
     end
 
     test 'maintain filters between pages' do

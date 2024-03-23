@@ -42,6 +42,27 @@ module RushJobMongoid
       assert_equal RushJob.by_priority(1), [job]
     end
 
+    test 'by_priority returns all docs when the priority is not present' do
+      RushJob.create(priority: 1)
+      RushJob.create(priority: 2)
+
+      assert_equal RushJob.by_priority(nil).count, 2
+    end
+
+    test 'by_attempts returns documents by attempt' do
+      job = RushJob.create(attempts: 1)
+      RushJob.create(attempts: 2)
+
+      assert_equal RushJob.by_attempts(1), [job]
+    end
+
+    test 'by_attempts returns all docs when the attempts is not present' do
+      RushJob.create(attempts: 1)
+      RushJob.create(attempts: 2)
+
+      assert_equal RushJob.by_attempts(nil).count, 2
+    end
+
     test 'job_class returns class of the job' do
       rush_job = RushJob.new
       rush_job.handler = @example_handler
@@ -104,6 +125,13 @@ module RushJobMongoid
       RushJob.create(priority: 2)
 
       assert_equal RushJob.filter({ priority: 1 }), [job1]
+    end
+
+    test 'filter filters by attempts' do
+      job1 = RushJob.create(attempts: 1)
+      RushJob.create(attempts: 2)
+
+      assert_equal RushJob.filter({ attempts: 1 }), [job1]
     end
   end
 end
