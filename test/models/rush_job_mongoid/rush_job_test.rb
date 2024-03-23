@@ -22,17 +22,24 @@ module RushJobMongoid
     end
 
     test 'by_doc_id returns documents by id' do
-      job1 = RushJob.create(locked_at: Time.zone.now)
-      RushJob.create(locked_at: Time.zone.now)
+      job1 = RushJob.create
+      RushJob.create
 
       assert_equal RushJob.by_doc_id(job1.id), [job1]
     end
 
     test 'by_doc_id returns all docs when the doc_id is not present' do
-      job1 = RushJob.create(locked_at: Time.zone.now)
-      job2 = RushJob.create(locked_at: Time.zone.now)
+      job1 = RushJob.create
+      job2 = RushJob.create
 
       assert_equal RushJob.by_doc_id(nil), [job1, job2]
+    end
+
+    test 'by_priority returns documents by priority' do
+      job = RushJob.create(priority: 1)
+      RushJob.create(priority: 2)
+
+      assert_equal RushJob.by_priority(1), [job]
     end
 
     test 'job_class returns class of the job' do
@@ -86,10 +93,17 @@ module RushJobMongoid
     end
 
     test 'filter filters by document id' do
-      job1 = RushJob.create(locked_at: Time.zone.now)
-      RushJob.create(locked_at: Time.zone.now)
+      job1 = RushJob.create
+      RushJob.create
 
       assert_equal RushJob.filter({ doc_id: job1.id }), [job1]
+    end
+
+    test 'filter filters by priority' do
+      job1 = RushJob.create(priority: 1)
+      RushJob.create(priority: 2)
+
+      assert_equal RushJob.filter({ priority: 1 }), [job1]
     end
   end
 end

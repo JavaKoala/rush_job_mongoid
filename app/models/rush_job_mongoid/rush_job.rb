@@ -18,6 +18,7 @@ module RushJobMongoid
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
     scope :paginate, ->(page, jobs_per_page) { limit(jobs_per_page).skip(jobs_per_page * (page - 1)) }
     scope :by_doc_id, ->(doc_id) { where(_id: doc_id) if doc_id.present? }
+    scope :by_priority, ->(queue_priority) { where(priority: queue_priority) if queue_priority.present? }
 
     def job_class
       job_data[:job_class]
@@ -48,7 +49,7 @@ module RushJobMongoid
     end
 
     def self.filter(filter_params)
-      by_doc_id(filter_params[:doc_id])
+      by_doc_id(filter_params[:doc_id]).by_priority(filter_params[:priority])
     end
 
     private

@@ -12,6 +12,7 @@ module RushJobMongoid
                              locked_by: 'Server 1',
                              failed_at: Time.zone.now,
                              last_error: '',
+                             priority: 0,
                              queue: 'Queue 1')
 
       @job2 = RushJob.create(handler: "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\n" \
@@ -21,6 +22,7 @@ module RushJobMongoid
                              locked_by: 'Server 2',
                              failed_at: Time.zone.now,
                              last_error: '',
+                             priority: 1,
                              queue: 'Queue 2')
     end
 
@@ -46,6 +48,16 @@ module RushJobMongoid
       click_link 'Filter'
 
       assert_field 'id:', with: @job1.id.to_s
+    end
+
+    test 'filter by priority' do
+      visit '/rush_job_mongoid/rush_jobs'
+      click_link 'Filter'
+      fill_in 'Priority', with: @job2.priority
+      click_button 'Filter'
+
+      assert_text @job2.queue
+      assert_no_text @job1.queue
     end
 
     test 'maintain filters between pages' do

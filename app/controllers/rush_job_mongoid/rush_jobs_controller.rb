@@ -8,7 +8,7 @@ module RushJobMongoid
     private
 
     def filter_params
-      params.permit(:doc_id)
+      params.permit(:doc_id, :priority)
     end
   end
 end
