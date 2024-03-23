@@ -18,6 +18,9 @@
 
           <%= form.label :job_class, t(:job_class), class: 'form-label'  %>
           <%= form.text_field :job_class, value: params[:job_class], class: 'form-control' %>
+
+          <%= form.label :arguments, t(:arguments), class: 'form-label'  %>
+          <%= form.text_field :arguments, value: params[:arguments], class: 'form-control' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t(:close) %></button>

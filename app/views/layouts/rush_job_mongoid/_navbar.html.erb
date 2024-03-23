@@ -21,7 +21,8 @@
                 root_path(doc_id: params[:doc_id],
                           priority: params[:priority],
                           attempts: params[:attempts],
-                          job_class: params[:job_class]),
+                          job_class: params[:job_class],
+                          arguments: params[:arguments]),
                 class: "nav-link#{' active' if current_page?(root_path)}" %>
           </li>
           <li class="nav-item">
@@ -29,7 +30,8 @@
                 rush_jobs_path(doc_id: params[:doc_id],
                                priority: params[:priority],
                                attempts: params[:attempts],
-                               job_class: params[:job_class]),
+                               job_class: params[:job_class],
+                               arguments: params[:arguments]),
                 class: "nav-link#{' active' if current_page?(rush_jobs_path)}" %>
           </li>
           <li class="nav-item dropdown">

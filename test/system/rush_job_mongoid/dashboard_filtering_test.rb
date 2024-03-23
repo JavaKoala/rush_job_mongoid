@@ -81,6 +81,16 @@ module RushJobMongoid
       assert_no_text @job2.id.to_s
     end
 
+    test 'filter by arguments' do
+      visit '/rush_job_mongoid/'
+      click_link 'Filter'
+      fill_in 'Arguments', with: 'arg1'
+      click_button 'Filter'
+
+      assert_text @job1.id.to_s
+      assert_no_text @job2.id.to_s
+    end
+
     test 'maintain filters between pages' do
       visit '/rush_job_mongoid/'
       click_link 'Filter'
