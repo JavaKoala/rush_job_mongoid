@@ -17,14 +17,16 @@ module RushJobMongoid
     scope :locked_jobs, -> { where(:locked_at.exists => true) }
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
     scope :paginate, ->(page, jobs_per_page) { limit(jobs_per_page).skip(jobs_per_page * (page - 1)) }
-    scope :by_doc_id, ->(doc_id) { where(_id: doc_id) if doc_id.present? }
-    scope :by_priority, ->(queue_priority) { where(priority: queue_priority) if queue_priority.present? }
-    scope :by_attempts, ->(attempt_number) { where(attempts: attempt_number) if attempt_number.present? }
     scope :by_job_class, ->(job_class) { where(handler: /#{job_class}/i) if job_class.present? }
     scope :by_arguments, ->(job_arguments) { where(handler: /#{job_arguments}/i) if job_arguments.present? }
-    scope :by_locked_by, ->(job_locked_by) { where(locked_by: job_locked_by) if job_locked_by.present? }
     scope :by_last_error, ->(last_error) { where(last_error: /#{last_error}/i) if last_error.present? }
-    scope :by_queue, ->(job_queue) { where(queue: job_queue) if job_queue.present? }
+
+    %i[by_doc_id by_priority by_attempts by_locked_by by_queue].each do |where_query|
+      define_singleton_method where_query do |arg|
+        param = where_query.to_s.sub('by_', '').sub('doc', '')
+        arg.present? ? where(param => arg) : where({})
+      end
+    end
 
     def job_class
       job_data[:job_class]
