@@ -33,9 +33,5 @@
 
 <%= render 'rush_job_mongoid/shared/pagination', controller: 'rush_jobs',
                                                  pagination_param: 'page',
-                                                 pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.filter(doc_id: params[:doc_id],
-                                                                                                                         priority: params[:priority],
-                                                                                                                         attempts: params[:attempts],
-                                                                                                                         job_class: params[:job_class],
-                                                                                                                         arguments: params[:arguments]).count, 20),
+                                                 pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.filter(filter_param_query).count, 20),
                                                  page: @pagination_presenter.page %>
