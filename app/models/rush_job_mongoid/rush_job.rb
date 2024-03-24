@@ -22,6 +22,9 @@ module RushJobMongoid
     scope :by_attempts, ->(attempt_number) { where(attempts: attempt_number) if attempt_number.present? }
     scope :by_job_class, ->(job_class) { where(handler: /#{job_class}/i) if job_class.present? }
     scope :by_arguments, ->(job_arguments) { where(handler: /#{job_arguments}/i) if job_arguments.present? }
+    scope :by_locked_by, ->(job_locked_by) { where(locked_by: job_locked_by) if job_locked_by.present? }
+    scope :by_last_error, ->(last_error) { where(last_error: /#{last_error}/i) if last_error.present? }
+    scope :by_queue, ->(job_queue) { where(queue: job_queue) if job_queue.present? }
 
     def job_class
       job_data[:job_class]
@@ -57,6 +60,9 @@ module RushJobMongoid
         .by_attempts(filter_params[:attempts])
         .by_job_class(filter_params[:job_class])
         .by_arguments(filter_params[:arguments])
+        .by_locked_by(filter_params[:locked_by])
+        .by_last_error(filter_params[:last_error])
+        .by_queue(filter_params[:queue])
     end
 
     private

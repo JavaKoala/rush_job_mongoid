@@ -91,6 +91,48 @@ module RushJobMongoid
       assert_equal RushJob.by_arguments(nil).count, 2
     end
 
+    test 'by_locked_by returns documents by locked_by' do
+      job = RushJob.create(locked_by: 'testServer')
+      RushJob.create(locked_by: 'fooServer')
+
+      assert_equal RushJob.by_locked_by('testServer'), [job]
+    end
+
+    test 'by_locked_by returns all docs when the locked by is not present' do
+      RushJob.create(locked_by: 'testServer')
+      RushJob.create(locked_by: 'fooServer')
+
+      assert_equal RushJob.by_locked_by(nil).count, 2
+    end
+
+    test 'by_last_error returns documents by last_error' do
+      job = RushJob.create(last_error: 'foo test bar')
+      RushJob.create(last_error: 'foobar')
+
+      assert_equal RushJob.by_last_error('Test'), [job]
+    end
+
+    test 'by_last_error returns all docs when the arguments are not present' do
+      RushJob.create(last_error: 'foo test bar')
+      RushJob.create(last_error: 'foobar')
+
+      assert_equal RushJob.by_last_error(nil).count, 2
+    end
+
+    test 'by_queue returns jobs by queue' do
+      job = RushJob.create(queue: 'test_queue')
+      RushJob.create(queue: 'foo_queue')
+
+      assert_equal RushJob.by_queue('test_queue'), [job]
+    end
+
+    test 'by_queue returns all docs when the queue is not present' do
+      RushJob.create(queue: 'test_queue')
+      RushJob.create(queue: 'foo_queue')
+
+      assert_equal RushJob.by_queue(nil).count, 2
+    end
+
     test 'job_class returns class of the job' do
       rush_job = RushJob.new
       rush_job.handler = @example_handler
@@ -174,6 +216,27 @@ module RushJobMongoid
       RushJob.create(handler: 'foobar')
 
       assert_equal RushJob.filter({ arguments: 'Test' }), [job1]
+    end
+
+    test 'filter filters by locked_by' do
+      job1 = RushJob.create(locked_by: 'testServer')
+      RushJob.create(locked_by: 'fooServer')
+
+      assert_equal RushJob.filter({ locked_by: 'testServer' }), [job1]
+    end
+
+    test 'filter filters by last_error' do
+      job1 = RushJob.create(last_error: 'foo test error')
+      RushJob.create(last_error: 'fooError')
+
+      assert_equal RushJob.filter({ last_error: 'test' }), [job1]
+    end
+
+    test 'filter filters by queue' do
+      job1 = RushJob.create(queue: 'test_queue')
+      RushJob.create(queue: 'foo_queue')
+
+      assert_equal RushJob.filter({ queue: 'test_queue' }), [job1]
     end
   end
 end
