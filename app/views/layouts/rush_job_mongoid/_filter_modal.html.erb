@@ -21,6 +21,15 @@
 
           <%= form.label :arguments, t(:arguments), class: 'form-label'  %>
           <%= form.text_field :arguments, value: params[:arguments], class: 'form-control' %>
+
+          <%= form.label :locked_by, t(:locked_by), class: 'form-label'  %>
+          <%= form.text_field :locked_by, value: params[:locked_by], class: 'form-control' %>
+
+          <%= form.label :last_error, t(:last_error), class: 'form-label'  %>
+          <%= form.text_field :last_error, value: params[:last_error], class: 'form-control' %>
+
+          <%= form.label :queue, t(:queue), class: 'form-label'  %>
+          <%= form.text_field :queue, value: params[:queue], class: 'form-control' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t(:close) %></button>

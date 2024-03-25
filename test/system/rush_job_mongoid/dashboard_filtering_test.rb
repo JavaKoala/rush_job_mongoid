@@ -11,7 +11,7 @@ module RushJobMongoid
                              locked_at: Time.zone.now,
                              locked_by: 'Server 1',
                              failed_at: Time.zone.now,
-                             last_error: '',
+                             last_error: 'Error1',
                              priority: 0,
                              attempts: 1,
                              queue: 'Queue 1')
@@ -22,7 +22,7 @@ module RushJobMongoid
                              locked_at: Time.zone.now,
                              locked_by: 'Server 2',
                              failed_at: Time.zone.now,
-                             last_error: '',
+                             last_error: 'Error2',
                              priority: 1,
                              attempts: 2,
                              queue: 'Queue 2')
@@ -85,6 +85,36 @@ module RushJobMongoid
       visit '/rush_job_mongoid/'
       click_link 'Filter'
       fill_in 'Arguments', with: 'arg1'
+      click_button 'Filter'
+
+      assert_text @job1.id.to_s
+      assert_no_text @job2.id.to_s
+    end
+
+    test 'filter by locked by' do
+      visit '/rush_job_mongoid/'
+      click_link 'Filter'
+      fill_in 'Locked by', with: @job1.locked_by
+      click_button 'Filter'
+
+      assert_text @job1.id.to_s
+      assert_no_text @job2.id.to_s
+    end
+
+    test 'filter by last error' do
+      visit '/rush_job_mongoid/'
+      click_link 'Filter'
+      fill_in 'Last error', with: @job1.last_error
+      click_button 'Filter'
+
+      assert_text @job1.id.to_s
+      assert_no_text @job2.id.to_s
+    end
+
+    test 'filter by queue' do
+      visit '/rush_job_mongoid/'
+      click_link 'Filter'
+      fill_in 'Queue', with: @job1.queue
       click_button 'Filter'
 
       assert_text @job1.id.to_s

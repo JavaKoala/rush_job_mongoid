@@ -23,7 +23,7 @@ module RushJobMongoid
     end
 
     def filter_params
-      params.permit(:doc_id, :priority, :attempts, :job_class, :arguments)
+      params.permit(:doc_id, :priority, :attempts, :job_class, :arguments, :locked_by, :last_error, :queue)
     end
   end
 end
