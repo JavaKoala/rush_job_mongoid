@@ -17,3 +17,4 @@ Style/Documentation:
 Metrics/ClassLength:
   Exclude:
     - "test/models/rush_job_mongoid/*.rb"
+    - "test/system/rush_job_mongoid/*.rb"
