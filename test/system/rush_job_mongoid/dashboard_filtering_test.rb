@@ -130,5 +130,23 @@ module RushJobMongoid
 
       assert_no_text 'Queue 2'
     end
+
+    test 'clear button clears filters' do
+      visit '/rush_job_mongoid/'
+      click_link 'Filter'
+      fill_in 'Id', with: 'reset test id'
+      fill_in 'Priority', with: 100
+      fill_in 'Attempts', with: 200
+      fill_in 'Job class', with: 'reset job class'
+      fill_in 'Arguments', with: 'reset test args'
+      fill_in 'Locked by', with: 'reset locked by'
+      fill_in 'Last error', with: 'reset last error'
+      fill_in 'Queue', with: 'reset queue'
+      click_button 'Clear'
+      click_button 'Filter'
+
+      assert_text @job1.id.to_s
+      assert_text @job2.id.to_s
+    end
   end
 end
