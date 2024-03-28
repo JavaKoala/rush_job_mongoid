@@ -7,29 +7,45 @@
       </div>
       <%= form_with url: request.path, method: :get, data: { controller: 'rush-job-mongoid-filter' } do |form| %>
         <div class="modal-body">
-          <%= form.label :doc_id, t(:id), class: 'form-label'  %>
-          <%= form.text_field :doc_id, value: params[:doc_id], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :doc_id, t(:id), class: 'form-label'  %>
+            <%= form.text_field :doc_id, value: params[:doc_id], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :priority, t(:priority), class: 'form-label'  %>
-          <%= form.number_field :priority, value: params[:priority], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :priority, t(:priority), class: 'form-label'  %>
+            <%= form.number_field :priority, value: params[:priority], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :attempts, t(:attempts), class: 'form-label'  %>
-          <%= form.number_field :attempts, value: params[:attempts], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :attempts, t(:attempts), class: 'form-label'  %>
+            <%= form.number_field :attempts, value: params[:attempts], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :job_class, t(:job_class), class: 'form-label'  %>
-          <%= form.text_field :job_class, value: params[:job_class], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :job_class, t(:job_class), class: 'form-label'  %>
+            <%= form.text_field :job_class, value: params[:job_class], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :arguments, t(:arguments), class: 'form-label'  %>
-          <%= form.text_field :arguments, value: params[:arguments], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :arguments, t(:arguments), class: 'form-label'  %>
+            <%= form.text_field :arguments, value: params[:arguments], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :locked_by, t(:locked_by), class: 'form-label'  %>
-          <%= form.text_field :locked_by, value: params[:locked_by], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :locked_by, t(:locked_by), class: 'form-label'  %>
+            <%= form.text_field :locked_by, value: params[:locked_by], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :last_error, t(:last_error), class: 'form-label'  %>
-          <%= form.text_field :last_error, value: params[:last_error], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :last_error, t(:last_error), class: 'form-label'  %>
+            <%= form.text_field :last_error, value: params[:last_error], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
 
-          <%= form.label :queue, t(:queue), class: 'form-label'  %>
-          <%= form.text_field :queue, value: params[:queue], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          <div class="mb-3">
+            <%= form.label :queue, t(:queue), class: 'form-label'  %>
+            <%= form.text_field :queue, value: params[:queue], class: 'form-control', data: { 'rush-job-mongoid-filter-target' => 'input' } %>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-action="click->rush-job-mongoid-filter#clearForm"><%= t(:clear) %></button>
