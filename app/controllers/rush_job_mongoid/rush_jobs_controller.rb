@@ -5,6 +5,8 @@ module RushJobMongoid
       @rush_jobs = RushJob.filter(filter_params).locked_by_desc.paginate(@pagination_presenter.page, 20)
     end
 
+    def edit; end
+
     private
 
     def filter_params
