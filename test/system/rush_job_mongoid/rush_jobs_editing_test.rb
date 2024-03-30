@@ -15,6 +15,12 @@ module RushJobMongoid
                              priority: 0,
                              attempts: 1,
                              queue: 'Queue 1')
+
+      visit '/rush_job_mongoid/'
+      click_link 'Options'
+      accept_confirm do
+        click_button 'Enable Editing'
+      end
     end
 
     teardown do
@@ -26,6 +32,16 @@ module RushJobMongoid
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
 
       assert_text 'Edit Job'
+    end
+
+    test 'edit not displayed when editing is not enabled' do
+      click_link 'Options'
+      accept_confirm do
+        click_button 'Disable Editing'
+      end
+      visit '/rush_job_mongoid/rush_jobs'
+
+      assert_no_selector("#rush-job-mongoid-pencil-square-#{@job1.id}")
     end
   end
 end
