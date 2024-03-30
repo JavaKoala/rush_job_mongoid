@@ -26,6 +26,14 @@
                 rush_jobs_path(filter_param_query),
                 class: "nav-link#{' active' if current_page?(rush_jobs_path)}" %>
           </li>
+          <li class="nav-item">
+            <a class="nav-link"
+               data-bs-toggle="modal"
+               data-bs-target="#rush-job-mongoid-filter-modal"
+               href="#">
+               <%= t(:filter) %>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
                data-bs-toggle="dropdown"
@@ -44,14 +52,6 @@
                             params: { setting: 'editing' },
                             data: { confirm: t("#{editing_enabled? ? 'disable_editing_confirmation' : 'enable_editing_confirmation'}") } %>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               data-bs-toggle="modal"
-               data-bs-target="#rush-job-mongoid-filter-modal"
-               href="#">
-               <%= t(:filter) %>
-            </a>
           </li>
         </ul>
       </div>
