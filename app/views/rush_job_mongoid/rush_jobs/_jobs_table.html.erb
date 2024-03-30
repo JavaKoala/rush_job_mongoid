@@ -1,6 +1,7 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th></th>
       <th><%= t :priority %></th>
       <th><%= t :attempts %></th>
       <th><%= t :job_class %></th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @rush_jobs.each do |job| %>
       <tr>
+        <td><%= link_to image_tag("rush_job_mongoid/pencil-square.svg", id: "rush-job-mongoid-pencil-square-#{job.id}", alt: 'pencil square'), edit_rush_job_path(job.id) %></td>
         <td><%= job.priority %></td>
         <td><%= job.attempts %></td>
         <td><%= job.job_class %></td>
