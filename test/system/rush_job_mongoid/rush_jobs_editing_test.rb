@@ -34,16 +34,21 @@ module RushJobMongoid
       assert_text "Edit Job #{@job1.id}"
 
       priority = 50
+      attempts = 5
+      handler = @job1.handler.sub('TestHandler1', 'UpdatedHandler').sub('arg1', 'updatedArg')
 
       fill_in 'Priority', with: priority
+      fill_in 'Attempts', with: attempts
+      fill_in 'Handler', with: handler
+      fill_in 'Run at', with: "03102024\t021507p"
       click_button 'Update'
 
       job_row = ['',
                  priority,
-                 @job1.attempts,
-                 @job1.job_class,
-                 @job1.job_arguments,
-                 @job1.run_at.to_s,
+                 attempts,
+                 'UpdatedHandler',
+                 'updatedArg',
+                 '2024-03-10 14:15:07 UTC',
                  @job1.locked_at.to_s,
                  @job1.locked_by.to_s,
                  @job1.failed_at.to_s,

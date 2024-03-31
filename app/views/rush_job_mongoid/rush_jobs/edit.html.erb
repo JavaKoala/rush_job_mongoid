@@ -5,5 +5,17 @@
     <%= form.label :priority, t(:priority), class: 'form-label' %>
     <%= form.number_field :priority, class: 'form-control' %>
   </div>
+  <div class="mb-3 w-25">
+    <%= form.label :attempts, t(:attempts), class: 'form-label' %>
+    <%= form.number_field :attempts, class: 'form-control' %>
+  </div>
+  <div class="mb-3 w-75">
+    <%= form.label :handler, t(:handler), class: 'form-label' %>
+    <%= form.text_area :handler, rows: 15, class: 'form-control' %>
+  </div>
+  <div class="mb-3 w-25">
+    <%= form.label :run_at, t(:run_at), class: 'form-label' %>
+    <%= form.datetime_local_field :run_at, class: 'form-control', step: 1 %>
+  </div>
   <%= form.submit t(:update), class: 'btn btn-primary' %>
 <% end %>
