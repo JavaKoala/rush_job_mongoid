@@ -13,6 +13,12 @@ module RushJobMongoid
       DatabaseCleaner.clean
     end
 
+    test 'jobs without a priority are not valid' do
+      job = RushJob.create(priority: nil)
+
+      assert_equal job.valid?, false
+    end
+
     test 'locked_jobs returns locked jobs' do
       locked_job = RushJob.create(locked_at: Time.zone.now)
       RushJob.create

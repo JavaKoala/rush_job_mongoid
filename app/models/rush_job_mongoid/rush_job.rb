@@ -14,6 +14,8 @@ module RushJobMongoid
     field :last_error, type: String
     field :queue,      type: String
 
+    validates :priority, presence: true
+
     scope :locked_jobs, -> { where(:locked_at.exists => true) }
     scope :locked_by_desc, -> { order_by(locked_by: -1, priority: 1, run_at: 1) }
     scope :paginate, ->(page, jobs_per_page) { limit(jobs_per_page).skip(jobs_per_page * (page - 1)) }
