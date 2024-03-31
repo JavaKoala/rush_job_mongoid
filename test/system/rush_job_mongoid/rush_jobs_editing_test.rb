@@ -31,7 +31,7 @@ module RushJobMongoid
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
 
-      assert_text 'Edit Job'
+      assert_text "Edit Job #{@job1.id}"
     end
 
     test 'edit not displayed when editing is not enabled' do

@@ -23,6 +23,7 @@ module RushJobMongoid
       get "/rush_job_mongoid/rush_jobs/#{job.id}/edit"
 
       assert_response :success
+      assert_select '.text-body', "Edit Job #{job.id}"
     end
   end
 end
