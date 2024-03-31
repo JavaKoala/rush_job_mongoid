@@ -3,5 +3,5 @@ RushJobMongoid::Engine.routes.draw do
   delete '/dashboard', to: 'dashboard#destroy'
   patch '/settings', to: 'settings#update'
 
-  resources :rush_jobs, only: %i[index edit]
+  resources :rush_jobs, only: %i[index edit update]
 end

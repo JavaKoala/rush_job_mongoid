@@ -25,5 +25,12 @@ module RushJobMongoid
       assert_response :success
       assert_select '.text-body', "Edit Job #{job.id}"
     end
+
+    test 'successful edit should redirect to index' do
+      job = RushJob.create
+      patch rush_job_url(job), params: { job: { priority: 10 } }
+
+      assert_redirected_to rush_jobs_path
+    end
   end
 end
