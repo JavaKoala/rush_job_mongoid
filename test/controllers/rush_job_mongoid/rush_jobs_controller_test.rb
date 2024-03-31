@@ -28,9 +28,10 @@ module RushJobMongoid
 
     test 'successful edit should redirect to index' do
       job = RushJob.create
-      patch rush_job_url(job), params: { job: { priority: 10 } }
+      patch rush_job_url(job), params: { rush_job: { priority: 10 } }
 
-      assert_redirected_to rush_jobs_path
+      assert_redirected_to rush_jobs_path(doc_id: job.id)
+      assert_equal job.reload.priority, 10
     end
   end
 end

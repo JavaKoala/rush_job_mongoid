@@ -13,7 +13,7 @@ module RushJobMongoid
       @job = RushJob.find(params[:id])
       @job.update(update_params)
 
-      redirect_to rush_jobs_path
+      redirect_to rush_jobs_path(doc_id: @job.id)
     end
 
     private
@@ -23,7 +23,7 @@ module RushJobMongoid
     end
 
     def update_params
-      params.require(:job).permit(:priority, :attempts, :job_class, :arguments, :locked_by, :last_error, :queue)
+      params.require(:rush_job).permit(:priority, :attempts, :job_class, :arguments, :locked_by, :last_error, :queue)
     end
   end
 end
