@@ -17,5 +17,25 @@
     <%= form.label :run_at, t(:run_at), class: 'form-label' %>
     <%= form.datetime_local_field :run_at, class: 'form-control', step: 1 %>
   </div>
+  <div class="mb-3 w-25">
+    <%= form.label :locked_at, t(:locked_at), class: 'form-label' %>
+    <%= form.datetime_local_field :locked_at, class: 'form-control', step: 1 %>
+  </div>
+  <div class="mb-3 w-25">
+    <%= form.label :locked_by, t(:locked_by), class: 'form-label' %>
+    <%= form.text_field :locked_by, class: 'form-control' %>
+  </div>
+  <div class="mb-3 w-25">
+    <%= form.label :failed_at, t(:failed_at), class: 'form-label' %>
+    <%= form.datetime_local_field :failed_at, class: 'form-control', step: 1 %>
+  </div>
+  <div class="mb-3 w-25">
+    <%= form.label :last_error, t(:last_error), class: 'form-label' %>
+    <%= form.text_field :last_error, class: 'form-control' %>
+  </div>
+  <div class="mb-3 w-25">
+    <%= form.label :queue, t(:queue), class: 'form-label' %>
+    <%= form.text_field :queue, class: 'form-control' %>
+  </div>
   <%= form.submit t(:update), class: 'btn btn-primary' %>
 <% end %>

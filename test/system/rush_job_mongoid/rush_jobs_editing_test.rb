@@ -36,24 +36,25 @@ module RushJobMongoid
       priority = 50
       attempts = 5
       handler = @job1.handler.sub('TestHandler1', 'UpdatedHandler').sub('arg1', 'updatedArg')
+      locked_by = 'Updated Server1'
+      last_error = 'Updated Last Error'
+      queue = 'Updated Queue 1'
 
       fill_in 'Priority', with: priority
       fill_in 'Attempts', with: attempts
       fill_in 'Handler', with: handler
       fill_in 'Run at', with: "03102024\t021507p"
+      fill_in 'Locked at', with: "01202024\t054512a"
+      fill_in 'Locked by', with: locked_by
+      fill_in 'Failed at', with: "12252023\t120401p"
+      fill_in 'Last error', with: last_error
+      fill_in 'Queue', with: queue
       click_button 'Update'
 
-      job_row = ['',
-                 priority,
-                 attempts,
-                 'UpdatedHandler',
-                 'updatedArg',
-                 '2024-03-10 14:15:07 UTC',
-                 @job1.locked_at.to_s,
-                 @job1.locked_by.to_s,
-                 @job1.failed_at.to_s,
-                 @job1.last_error.to_s,
-                 @job1.queue.to_s]
+      job_row = ['', priority, attempts,
+                 'UpdatedHandler', 'updatedArg', '2024-03-10 14:15:07 UTC',
+                 '2024-01-20 05:45:12 UTC', locked_by, '2023-12-25 12:04:01 UTC',
+                 last_error, queue]
 
       assert_equal has_table?(rows: [job_row]), true
     end
