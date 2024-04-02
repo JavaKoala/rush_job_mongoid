@@ -11,6 +11,7 @@ en:
   delayed_title: "Delayed Jobs"
   disable_editing: "Disable Editing"
   disable_editing_confirmation: "Are you sure?"
+  edit_warning: "Verify workers are stopped before editing. Minimal validations are applied."
   enable_editing: "Enable Editing"
   enable_editing_confirmation: "Are you sure? Verify workers are stopped before editing."
   enable_polling: "Enable polling"

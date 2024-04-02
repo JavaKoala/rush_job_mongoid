@@ -6,6 +6,7 @@ module RushJobMongoid
     end
 
     def edit
+      flash[:warning] = t(:edit_warning)
       @job = RushJob.find(params[:id])
     end
 

@@ -32,6 +32,7 @@ module RushJobMongoid
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
 
       assert_text "Edit Job #{@job1.id}"
+      assert_text 'Verify workers are stopped before editing. Minimal validations are applied.'
 
       priority = 50
       attempts = 5
