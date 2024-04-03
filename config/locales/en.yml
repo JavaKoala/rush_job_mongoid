@@ -36,4 +36,6 @@ en:
   queues: "Queues"
   reload: "Reload"
   run_at: "Run at"
+  unable_to_update: "Unable to edit job. %{errors}"
   update: "Update"
+  updated_job: "Successfully updated job %{job_id}"
