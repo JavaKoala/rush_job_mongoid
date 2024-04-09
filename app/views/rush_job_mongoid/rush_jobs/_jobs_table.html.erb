@@ -20,7 +20,7 @@
     <% @rush_jobs.each do |job| %>
       <tr>
         <% if editing_enabled? %>
-          <td><%= link_to image_tag("rush_job_mongoid/pencil-square.svg", id: "rush-job-mongoid-pencil-square-#{job.id}", alt: 'pencil square'), edit_rush_job_path(job.id) %></td>
+          <td><%= link_to image_tag("rush_job_mongoid/pencil-square-#{invert_theme}.svg", id: "rush-job-mongoid-pencil-square-#{job.id}", alt: 'pencil square'), edit_rush_job_path(job.id) %></td>
         <% end %>
         <td><%= job.priority %></td>
         <td><%= job.attempts %></td>
