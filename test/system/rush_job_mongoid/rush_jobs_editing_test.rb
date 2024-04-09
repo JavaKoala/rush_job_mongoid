@@ -69,5 +69,16 @@ module RushJobMongoid
 
       assert_no_selector("#rush-job-mongoid-pencil-square-#{@job1.id}")
     end
+
+    test 'invalid edit' do
+      visit '/rush_job_mongoid/rush_jobs'
+      find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
+      fill_in 'Priority', with: ''
+
+      click_button 'Update'
+
+      assert_text "Edit Job #{@job1.id}"
+      assert_text "Unable to edit job. Priority can't be blank"
+    end
   end
 end
