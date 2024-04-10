@@ -25,5 +25,15 @@ module RushJobMongoid
 
       assert_equal filter_param_query, expected
     end
+
+    test 'filter_param_query_empty? returns false when filters are applied' do
+      params[:doc_id] = 'test_doc_id'
+
+      assert_equal filter_param_query_empty?, false
+    end
+
+    test 'filter_param_query_empty? returns true when filters are not applied' do
+      assert_equal filter_param_query_empty?, true
+    end
   end
 end

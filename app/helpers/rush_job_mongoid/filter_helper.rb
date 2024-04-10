@@ -12,5 +12,9 @@ module RushJobMongoid
         queue: params[:queue]
       }
     end
+
+    def filter_param_query_empty?
+      filter_param_query.values.join.empty?
+    end
   end
 end

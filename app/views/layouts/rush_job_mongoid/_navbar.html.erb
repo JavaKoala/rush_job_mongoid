@@ -32,6 +32,11 @@
                data-bs-target="#rush-job-mongoid-filter-modal"
                href="#">
                <%= t(:filter) %>
+               <% if filter_param_query_empty? %>
+                 <%= image_tag("rush_job_mongoid/funnel.svg", alt: 'funnel') %>
+               <% else %>
+                 <%= image_tag("rush_job_mongoid/funnel-fill.svg", alt: 'funnel filled') %>
+               <% end %>
             </a>
           </li>
           <li class="nav-item dropdown">
