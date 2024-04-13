@@ -1,6 +1,6 @@
 module RushJobMongoid
   class RushJobsController < ApplicationController
-    before_action :find_job, only: %i[edit update]
+    before_action :find_job, only: %i[edit update destroy]
 
     def index
       @pagination_presenter = PaginationPresenter.new(params[:page])
@@ -19,6 +19,13 @@ module RushJobMongoid
         flash[:danger] = t(:unable_to_update, errors: @job.errors.full_messages.to_sentence)
         render :edit, status: :unprocessable_entity
       end
+    end
+
+    def destroy
+      @job.destroy
+
+      flash[:success] = t(:deleted_job, job_id: @job.id)
+      redirect_to rush_jobs_path
     end
 
     private

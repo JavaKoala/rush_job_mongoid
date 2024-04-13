@@ -9,6 +9,8 @@ en:
   dark_mode: "Dark Mode"
   dashboard: "Dashboard"
   delayed_title: "Delayed Jobs"
+  deleted_job: "Deleted job %{job_id}"
+  delete_job_confirmation: "Are you sure you want to delete job %{job_id} ?"
   disable_editing: "Disable Editing"
   disable_editing_confirmation: "Are you sure?"
   edit_warning: "Verify workers are stopped before editing. Minimal validations are applied."

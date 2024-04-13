@@ -42,5 +42,15 @@ module RushJobMongoid
       assert_response :unprocessable_entity
       assert_equal "Unable to edit job. Priority can't be blank", flash[:danger]
     end
+
+    test 'delete job' do
+      job = RushJob.create
+      assert_difference 'RushJob.count', -1 do
+        delete rush_job_url(job)
+      end
+
+      assert_redirected_to rush_jobs_path
+      assert_equal "Deleted job #{job.id}", flash[:success]
+    end
   end
 end

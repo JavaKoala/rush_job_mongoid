@@ -80,5 +80,22 @@ module RushJobMongoid
       assert_text "Edit Job #{@job1.id}"
       assert_text "Unable to edit job. Priority can't be blank"
     end
+
+    test 'delete job' do
+      visit '/rush_job_mongoid/rush_jobs'
+      find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
+
+      accept_confirm do
+        click_button 'Delete'
+      end
+
+      assert_text "Deleted job #{@job1.id}"
+
+      click_link 'Filter'
+      fill_in 'Id', with: @job1.id.to_s
+      click_button 'Filter'
+
+      assert_no_text @job1.queue
+    end
   end
 end
