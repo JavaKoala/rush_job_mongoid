@@ -146,11 +146,23 @@ module RushJobMongoid
       assert_equal rush_job.job_class, 'TestHandler'
     end
 
+    test 'job_class handles an empty handler' do
+      rush_job = RushJob.new(handler: '')
+
+      assert_nil rush_job.job_class
+    end
+
     test 'job_arguments returns arguments of the job' do
       rush_job = RushJob.new
       rush_job.handler = @example_handler
 
       assert_equal rush_job.job_arguments, ['arg1']
+    end
+
+    test 'job_arguments returns empty string for no args' do
+      rush_job = RushJob.new(handler: '')
+
+      assert_equal rush_job.job_arguments, ''
     end
 
     test 'queue_groups counts queue and priority' do

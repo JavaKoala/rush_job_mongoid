@@ -31,11 +31,11 @@ module RushJobMongoid
     end
 
     def job_class
-      job_data[:job_class]
+      job_data&.fetch(:job_class)
     end
 
     def job_arguments
-      job_data[:arguments].presence || ''
+      job_data&.fetch(:arguments).presence || ''
     end
 
     def self.queue_groups
@@ -77,7 +77,7 @@ module RushJobMongoid
     end
 
     def job_data
-      handler_hash[:job_data]
+      handler_hash&.fetch(:job_data)
     end
   end
 end
