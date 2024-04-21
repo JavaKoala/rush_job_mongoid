@@ -1,5 +1,7 @@
 <h3 class="text-body">Edit Job <%= @job.id %></h3>
 
+<%= link_to 'Back', :back, class: 'btn btn-primary btn-sm mb-3' %>
+
 <%= form_with model: @job do |form| %>
   <div class="mb-3 w-25">
     <%= form.label :priority, t(:priority), class: 'form-label' %>

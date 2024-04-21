@@ -27,6 +27,16 @@ module RushJobMongoid
       DatabaseCleaner.clean
     end
 
+    test 'back button' do
+      visit '/rush_job_mongoid/rush_jobs'
+      find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
+      fill_in 'Queue', with: 'Updated Queue'
+      click_link 'Back'
+
+      assert_text 'Queue 1'
+      assert_no_text 'Updated Queue'
+    end
+
     test 'edit job' do
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
