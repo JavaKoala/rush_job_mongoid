@@ -30,6 +30,7 @@ en:
   locked_at: "Locked at"
   locked_by: "Locked by"
   locked_jobs: "Locked Jobs"
+  missing_document: "Unable to find document."
   name: "Name"
   next: "Next"
   polling_time: "Polling time:"

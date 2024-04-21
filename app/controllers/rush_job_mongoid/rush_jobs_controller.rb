@@ -32,6 +32,10 @@ module RushJobMongoid
 
     def find_job
       @job = RushJob.find(params[:id])
+    rescue Mongoid::Errors::DocumentNotFound => e
+      Rails.logger.info e.message
+      flash[:danger] = t(:missing_document)
+      redirect_to rush_jobs_path
     end
 
     def filter_params

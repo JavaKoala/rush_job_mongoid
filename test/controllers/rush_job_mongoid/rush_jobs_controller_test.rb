@@ -26,6 +26,14 @@ module RushJobMongoid
       assert_equal 'Verify workers are stopped before editing. Minimal validations are applied.', flash[:warning]
     end
 
+    test 'shold redirect to index for edit with invalid document' do
+      get '/rush_job_mongoid/rush_jobs/foo/edit'
+
+      assert_response :redirect
+      assert_redirected_to rush_jobs_path
+      assert_equal 'Unable to find document.', flash[:danger]
+    end
+
     test 'successful edit should redirect to index' do
       job = RushJob.create
       patch rush_job_url(job), params: { rush_job: { priority: 10 } }
