@@ -29,42 +29,6 @@
   <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(@locked_jobs.jobs.count, 10), page: @locked_jobs_presenter.page %>
 </div>
 
-<h3 class="text-body"><%= t :queues %></h3>
-
-<div id="rush-job-mongoid-dashboard-queues">
-  <div class="d-flex justify-content-left">
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th><%= t :name %></th>
-            <th><%= t :priority %></th>
-            <th><%= t :count %></th>
-            <% if editing_enabled? %>
-              <th><%= t :clear %></th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% @queue_groups.each do |group| %>
-            <tr>
-              <td><%= group[:queue] %></td>
-              <td><%= group[:priority] %></td>
-              <td><%= group[:count] %></td>
-              <% if editing_enabled? %>
-                <td><%= button_to t(:clear),
-                                  dashboard_path,
-                                  class: "btn btn-danger btn-sm",
-                                  method: :delete,
-                                  params: { queue: group[:queue], priority: group[:priority] },
-                                  data: { confirm: t(:clear_queue_confirmation, queue: group[:queue]) } %></td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'queue_groups_page', pages_count: @queue_groups_presenter.pages(@rush_job_queue_groups.count, 10), page: @queue_groups_presenter.page %>
-</div>
+<% if queue_groups_enabled? %>
+  <%= render 'queues_table' %>
+<% end %>

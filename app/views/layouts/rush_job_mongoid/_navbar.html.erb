@@ -56,6 +56,11 @@
                             method: :patch,
                             params: { setting: 'editing' },
                             data: { confirm: t("#{editing_enabled? ? 'disable_editing_confirmation' : 'enable_editing_confirmation'}") } %>
+              <%= button_to t("#{queue_groups_enabled? ? 'disable_queues' : 'enable_queues'}"),
+                            settings_path,
+                            class: "nav-link",
+                            method: :patch,
+                            params: { setting: 'queue_groups_presenter' } %>
             </div>
           </li>
         </ul>

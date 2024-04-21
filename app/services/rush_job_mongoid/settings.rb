@@ -2,7 +2,8 @@ module RushJobMongoid
   class Settings
     RUSH_JOB_SETTINGS = {
       theme: %w[light dark],
-      editing: %w[disabled enabled]
+      editing: %w[disabled enabled],
+      queue_groups_presenter: %w[enabled disabled]
     }.freeze
 
     def self.change_setting(setting, value)

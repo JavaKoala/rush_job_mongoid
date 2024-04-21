@@ -1,12 +1,11 @@
 module RushJobMongoid
   class DashboardController < ApplicationController
+    include RushJobMongoid::SettingsHelper
+
     def index
       @locked_jobs_presenter = PaginationPresenter.new(params[:locked_jobs_page])
       @locked_jobs = LockedJobs.new(filter_params)
-
-      @queue_groups_presenter = PaginationPresenter.new(params[:queue_groups_page])
-      @rush_job_queue_groups = RushJob.queue_groups
-      @queue_groups = @rush_job_queue_groups[(@queue_groups_presenter.page - 1) * 10, 10]
+      @queues_presenter = QueueGroupsPresenter.new(params[:queue_groups_page]) if queue_groups_enabled?
     end
 
     def destroy

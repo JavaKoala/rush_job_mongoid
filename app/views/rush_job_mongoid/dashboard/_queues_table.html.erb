@@ -1,0 +1,39 @@
+<h3 class="text-body"><%= t :queues %></h3>
+
+<div id="rush-job-mongoid-dashboard-queues">
+  <div class="d-flex justify-content-left">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= t :name %></th>
+            <th><%= t :priority %></th>
+            <th><%= t :count %></th>
+            <% if editing_enabled? %>
+              <th><%= t :clear %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @queues_presenter.queue_groups.each do |group| %>
+            <tr>
+              <td><%= group[:queue] %></td>
+              <td><%= group[:priority] %></td>
+              <td><%= group[:count] %></td>
+              <% if editing_enabled? %>
+                <td><%= button_to t(:clear),
+                                  dashboard_path,
+                                  class: "btn btn-danger btn-sm",
+                                  method: :delete,
+                                  params: { queue: group[:queue], priority: group[:priority] },
+                                  data: { confirm: t(:clear_queue_confirmation, queue: group[:queue]) } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'queue_groups_page', pages_count: @queues_presenter.pages_count, page: @queues_presenter.page %>
+</div>

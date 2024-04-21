@@ -11,5 +11,9 @@ module RushJobMongoid
     def editing_enabled?
       cookies[:rush_job_editing] == 'enabled'
     end
+
+    def queue_groups_enabled?
+      cookies[:rush_job_queue_groups_presenter] != 'disabled'
+    end
   end
 end

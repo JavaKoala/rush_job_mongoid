@@ -37,5 +37,21 @@ module RushJobMongoid
 
       assert_equal editing_enabled?, false
     end
+
+    test 'returns true for queue groups default' do
+      assert_equal queue_groups_enabled?, true
+    end
+
+    test 'returns true for queue groups enabled' do
+      cookies[:rush_job_queue_groups_presenter] = 'enabled'
+
+      assert_equal queue_groups_enabled?, true
+    end
+
+    test 'returns false for queue groups disabled' do
+      cookies[:rush_job_queue_groups_presenter] = 'disabled'
+
+      assert_equal queue_groups_enabled?, false
+    end
   end
 end
