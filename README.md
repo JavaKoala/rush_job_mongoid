@@ -40,7 +40,7 @@ $ bundle install
 
 Add the following to your `config/routes.rb` file:
 ```ruby
-mount RushJob::Engine => '/rush_job_mongoid'
+mount RushJobMongoid::Engine => '/rush_job_mongoid'
 ```
 
 ## Contributing
