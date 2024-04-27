@@ -1,28 +1,60 @@
 # RushJobMongoid
-Short description and motivation.
+User interface for Delayed Job Mongoid (https://github.com/collectiveidea/delayed_job_mongoid) in Ruby on Rails 
+
+<img width="656" alt="Dashboard" src="docs/assets/dashboard.png">
+<img width="656" alt="Jobs" src="docs/assets/jobs.png">
+
+### Note
+ - This app uses cookies to store the selected options.
 
 ## Usage
-How to use my plugin.
+You will need Delayed Job, `delayed_job`, and Delayed Job Mongoid, `delayed_job_mongoid`, installed in a Ruby on Rails application for this gem to work properly.
+
+Navigate to the `/rush_job_mongoid` route in your application to see the Delayed Jobs. Locally this would be `http://localhost:3000/rush_job_mongoid`
+
+### Options
+
+#### Dark Mode
+
+Enables or disables dark mode
+
+#### Editing
+
+Make sure workers are stopped before editing
+
+#### Queues
+
+Queues on the dashboard are eager loaded. If there are lots of queues this can affect performance. Disable queues if this becomes an issue.
 
 ## Installation
-Add this line to your application's Gemfile:
+Add this line to your Ruby on Rails application's Gemfile:
 
 ```ruby
-gem "rush_job_mongoid"
+gem 'rush_job', '~> 1.0.0'
 ```
 
 And then execute:
 ```bash
-$ bundle
+$ bundle install
 ```
 
-Or install it yourself as:
-```bash
-$ gem install rush_job_mongoid
+Add the following to your `config/routes.rb` file:
+```ruby
+mount RushJob::Engine => '/rush_job_mongoid'
 ```
 
 ## Contributing
-Contribution directions go here.
+Open an issue or
+  1. Fork
+  2. Update
+  3. Test
+      1. `bundle exec rails app:test:all` and check coverage in `test/coverage/index.html`
+      2. `bundle exec rubocop`
+      3. `bundle exec brakeman`
+  4. Open pull request
+
+## Upcoming
+  1. Remove dependency on Rails UJS and move to Hotwire and Turbo
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
