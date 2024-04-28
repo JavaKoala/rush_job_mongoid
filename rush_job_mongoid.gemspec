@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency 'actionview', '~> 7.0'
-  spec.add_dependency 'activerecord', '~> 7.0'
   spec.add_dependency 'activesupport', '~> 7.0'
   spec.add_dependency 'importmap-rails', '~> 2.0'
   spec.add_dependency 'mongoid', '~> 8.1'
