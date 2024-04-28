@@ -30,7 +30,7 @@ Queues on the dashboard are eager loaded. If there are lots of queues this can a
 Add this line to your Ruby on Rails application's Gemfile:
 
 ```ruby
-gem 'rush_job', '~> 1.0.0'
+gem 'rush_job', '~> 1.0.1'
 ```
 
 And then execute:

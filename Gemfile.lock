@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rush_job_mongoid (1.0.0)
+    rush_job_mongoid (1.0.1)
       actionview (~> 7.0)
       activesupport (~> 7.0)
       delayed_job (~> 4.1)
