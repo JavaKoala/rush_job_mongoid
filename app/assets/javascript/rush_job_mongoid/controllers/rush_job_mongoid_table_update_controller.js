@@ -1,15 +1,14 @@
 import { Controller } from '@hotwired/stimulus';
-import Rails from '@rails/ujs';
 
 export class RushJobMongoidTableUpdateController extends Controller {
   updateJobs() {
+    const headers =  { 'Accept': 'text/vnd.turbo-stream.html' }
+
     this.blurTable();
 
-    Rails.ajax({
-      url: document.location.href,
-      type: 'GET',
-      dataType: 'script',
-    });
+    fetch(document.location.href, { headers: headers})
+      .then(response => response.text())
+      .then(html => Turbo.renderStreamMessage(html));
   }
 
   blurTable() {

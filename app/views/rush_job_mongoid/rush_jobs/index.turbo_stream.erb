@@ -1,0 +1,6 @@
+<%= turbo_stream.replace 'rush_job_mongoid_jobs_frame',
+    partial: 'jobs_table',
+    locals: {
+      rush_jobs: @rush_jobs,
+      locked_jobs: @locked_jobs
+    } %>

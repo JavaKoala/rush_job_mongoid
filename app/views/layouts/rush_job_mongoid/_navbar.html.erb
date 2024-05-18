@@ -49,18 +49,23 @@
             </a>
             <div class="dropdown-menu"
                  data-bs-popper="static">
-              <%= button_to t("#{invert_theme}_mode"), settings_path, class: "nav-link", method: :patch, params: { setting: 'theme' } %>
+              <%= button_to t("#{invert_theme}_mode"),
+                            settings_path, class: "nav-link",
+                            method: :patch,
+                            params: { setting: 'theme' },
+                            data: { turbo: false } %>
               <%= button_to t("#{editing_enabled? ? 'disable_editing' : 'enable_editing'}"),
                             settings_path,
                             class: "nav-link",
                             method: :patch,
                             params: { setting: 'editing' },
-                            data: { confirm: t("#{editing_enabled? ? 'disable_editing_confirmation' : 'enable_editing_confirmation'}") } %>
+                            data: { turbo: false } %>
               <%= button_to t("#{queue_groups_enabled? ? 'disable_queues' : 'enable_queues'}"),
                             settings_path,
                             class: "nav-link",
                             method: :patch,
-                            params: { setting: 'queue_groups_presenter' } %>
+                            params: { setting: 'queue_groups_presenter' },
+                            data: { turbo: false } %>
             </div>
           </li>
         </ul>

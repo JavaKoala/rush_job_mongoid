@@ -18,9 +18,7 @@ module RushJobMongoid
 
       visit '/rush_job_mongoid/'
       click_link 'Options'
-      accept_confirm do
-        click_button 'Enable Editing'
-      end
+      click_button 'Enable Editing'
     end
 
     teardown do
@@ -72,9 +70,7 @@ module RushJobMongoid
 
     test 'edit not displayed when editing is not enabled' do
       click_link 'Options'
-      accept_confirm do
-        click_button 'Disable Editing'
-      end
+      click_button 'Disable Editing'
       visit '/rush_job_mongoid/rush_jobs'
 
       assert_no_selector("#rush-job-mongoid-pencil-square-#{@job1.id}")
@@ -94,10 +90,7 @@ module RushJobMongoid
     test 'delete job' do
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
-
-      accept_confirm do
-        click_button 'Delete'
-      end
+      click_button 'Delete'
 
       assert_text "Deleted job #{@job1.id}"
 

@@ -6,6 +6,11 @@ module RushJobMongoid
       @locked_jobs_presenter = PaginationPresenter.new(params[:locked_jobs_page])
       @locked_jobs = LockedJobs.new(filter_params)
       @queues_presenter = QueueGroupsPresenter.new(params[:queue_groups_page]) if queue_groups_enabled?
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
     end
 
     def destroy

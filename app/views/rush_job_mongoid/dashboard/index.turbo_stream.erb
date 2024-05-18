@@ -1,0 +1,7 @@
+<%= turbo_stream.replace 'rush_job_mongoid_dashboard_frame',
+    partial: 'dashboard_tables',
+    locals: {
+      locked_jobs_presenter: @locked_jobs_presenter,
+      pagination_presenter: @pagination_presenter,
+      queues_presenter: @queues_presenter
+    } %>

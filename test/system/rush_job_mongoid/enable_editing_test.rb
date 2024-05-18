@@ -25,16 +25,12 @@ module RushJobMongoid
       assert_no_button 'Clear'
 
       click_link 'Options'
-      accept_confirm do
-        click_button 'Enable Editing'
-      end
+      click_button 'Enable Editing'
 
       assert_button 'Clear'
 
       click_link 'Options'
-      accept_confirm do
-        click_button 'Disable Editing'
-      end
+      click_button 'Disable Editing'
 
       assert_no_button 'Clear'
     end
