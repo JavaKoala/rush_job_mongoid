@@ -5,6 +5,7 @@ export class RushJobMongoidTableUpdateController extends Controller {
     const headers =  { 'Accept': 'text/vnd.turbo-stream.html' }
 
     this.blurTable();
+    this.clearFlash();
 
     fetch(document.location.href, { headers: headers})
       .then(response => response.text())
@@ -14,5 +15,9 @@ export class RushJobMongoidTableUpdateController extends Controller {
   blurTable() {
     const jobsContainer = document.getElementById('rush-job-mongoid-jobs');
     jobsContainer.classList.add('table-refresh');
+  }
+
+  clearFlash() {
+    document.getElementById('rush-job-mongoid-flash-messages').innerHTML = '';
   }
 }

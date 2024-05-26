@@ -22,7 +22,6 @@ module RushJobMongoid
     end
 
     test 'clear queue' do
-      skip('need to handle flash messages')
       visit '/rush_job_mongoid'
 
       assert_text 'Queue 0'
