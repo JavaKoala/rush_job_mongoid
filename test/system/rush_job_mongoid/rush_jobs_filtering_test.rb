@@ -60,6 +60,11 @@ module RushJobMongoid
 
       assert_text @job2.queue
       assert_no_text @job1.queue
+
+      click_button 'Reload'
+
+      assert_text @job2.queue
+      assert_no_text @job1.queue
     end
 
     test 'filter by attempts' do
