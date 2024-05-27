@@ -110,6 +110,11 @@ module RushJobMongoid
       end
 
       assert_text 'Queue 10'
+
+      RushJob.delete_all
+      click_button 'Reload'
+
+      assert_no_text 'Queue 10'
     end
   end
 end
