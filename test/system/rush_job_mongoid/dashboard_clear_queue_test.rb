@@ -30,7 +30,9 @@ module RushJobMongoid
       click_button 'Enable Editing'
 
       assert_difference 'RushJob.queue_groups.count', -1 do
-        click_button('Clear', match: :first)
+        accept_confirm do
+          click_button('Clear', match: :first)
+        end
 
         assert_text 'Cleared queue Queue 0'
 
@@ -39,6 +41,15 @@ module RushJobMongoid
 
       assert_no_text 'Cleared queue Queue 0'
       assert_no_text 'Queue 0'
+      assert_text 'Queue 1'
+
+      assert_no_difference 'RushJob.queue_groups.count' do
+        dismiss_confirm do
+          click_button('Clear', match: :first)
+        end
+      end
+
+      assert_no_text 'Cleared queue Queue 1'
       assert_text 'Queue 1'
     end
   end
