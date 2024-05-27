@@ -27,7 +27,9 @@ module RushJobMongoid
       assert_text 'Queue 0'
 
       click_link 'Options'
-      click_button 'Enable Editing'
+      accept_confirm do
+        click_button 'Enable Editing'
+      end
 
       assert_difference 'RushJob.queue_groups.count', -1 do
         accept_confirm do
