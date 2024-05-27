@@ -47,5 +47,10 @@
     rush_job_url(@job),
     class: "btn btn-danger",
     method: :delete,
-    data: { turbo: false } %>
+    data: {
+      turbo: false,
+      controller: 'rush-job-mongoid-confirm',
+      action: 'click->rush-job-mongoid-confirm#displayConfirm',
+      confirm_message: t(:delete_job_confirmation, job_id: @job.id)
+    } %>
 </div>
