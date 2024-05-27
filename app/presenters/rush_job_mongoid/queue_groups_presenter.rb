@@ -19,7 +19,7 @@ module RushJobMongoid
     private
 
     def queue_groups_from_presener
-      @rush_job_queue_groups[(@queue_groups_presenter.page - 1) * 10, 10]
+      @rush_job_queue_groups[(@queue_groups_presenter.page - 1) * 10, 10] || []
     end
   end
 end
