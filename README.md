@@ -53,8 +53,8 @@ Open an issue or
       3. `bundle exec brakeman`
   4. Open pull request
 
-## Upcoming
-  1. Remove dependency on Rails UJS and move to Hotwire and Turbo
+## Turbo
+This gem uses turbo-rails, https://github.com/hotwired/turbo-rails. For Rails UJS fork from v1.0.2
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
