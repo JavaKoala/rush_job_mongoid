@@ -1,34 +1,38 @@
-<div id="rush-job-mongoid-dashboard-locked-jobs">
-  <div class="d-flex justify-content-left">
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th><%= t :id %></th>
-            <th><%= t :locked_at %></th>
-            <th><%= t :locked_by %></th>
-            <th><%= t :job_class %></th>
-            <th><%= t :arguments %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @locked_jobs.paginate(@locked_jobs_presenter.page).each do |job| %>
-            <tr>
-              <td><%= job.id %></td>
-              <td><%= job.locked_at %></td>
-              <td><%= job.locked_by %></td>
-              <td><%= job.job_class %></td>
-              <td><%= job.job_arguments %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<%= turbo_frame_tag 'rush_job_mongoid_dashboard_frame' do %>
+  <div id="rush-job-mongoid-jobs">
+    <div id="rush-job-mongoid-dashboard-locked-jobs">
+      <div class="d-flex justify-content-left">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th><%= t :id %></th>
+                <th><%= t :locked_at %></th>
+                <th><%= t :locked_by %></th>
+                <th><%= t :job_class %></th>
+                <th><%= t :arguments %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @locked_jobs.paginate(@locked_jobs_presenter.page).each do |job| %>
+                <tr>
+                  <td><%= job.id %></td>
+                  <td><%= job.locked_at %></td>
+                  <td><%= job.locked_by %></td>
+                  <td><%= job.job_class %></td>
+                  <td><%= job.job_arguments %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(@locked_jobs.jobs.count, 10), page: @locked_jobs_presenter.page %>
     </div>
+
+    <% if queue_groups_enabled? %>
+      <%= render 'queues_table' %>
+    <% end %>
   </div>
-
-  <%= render 'rush_job_mongoid/shared/pagination', controller: 'dashboard', pagination_param: 'locked_jobs_page', pages_count: @locked_jobs_presenter.pages(@locked_jobs.jobs.count, 10), page: @locked_jobs_presenter.page %>
-</div>
-
-<% if queue_groups_enabled? %>
-  <%= render 'queues_table' %>
 <% end %>

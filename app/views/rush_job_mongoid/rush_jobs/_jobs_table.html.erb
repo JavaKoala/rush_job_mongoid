@@ -1,43 +1,51 @@
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <% if editing_enabled? %>
-        <th></th>
-      <% end %>
-      <th><%= t :priority %></th>
-      <th><%= t :attempts %></th>
-      <th><%= t :job_class %></th>
-      <th><%= t :arguments %></th>
-      <th><%= t :run_at %></th>
-      <th><%= t :locked_at %></th>
-      <th><%= t :locked_by %></th>
-      <th><%= t :failed_at %></th>
-      <th><%= t :last_error %></th>
-      <th><%= t :queue %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @rush_jobs.each do |job| %>
-      <tr>
-        <% if editing_enabled? %>
-          <td><%= link_to image_tag("rush_job_mongoid/pencil-square-#{invert_theme}.svg", id: "rush-job-mongoid-pencil-square-#{job.id}", alt: 'pencil square'), edit_rush_job_path(job.id) %></td>
+<%= turbo_frame_tag 'rush_job_mongoid_jobs_frame' do %>
+  <div id="rush-job-mongoid-jobs">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <% if editing_enabled? %>
+            <th></th>
+          <% end %>
+          <th><%= t :priority %></th>
+          <th><%= t :attempts %></th>
+          <th><%= t :job_class %></th>
+          <th><%= t :arguments %></th>
+          <th><%= t :run_at %></th>
+          <th><%= t :locked_at %></th>
+          <th><%= t :locked_by %></th>
+          <th><%= t :failed_at %></th>
+          <th><%= t :last_error %></th>
+          <th><%= t :queue %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rush_jobs.each do |job| %>
+          <tr>
+            <% if editing_enabled? %>
+              <td><%= link_to image_tag("rush_job_mongoid/pencil-square-#{invert_theme}.svg",
+                      id: "rush-job-mongoid-pencil-square-#{job.id}",
+                      alt: 'pencil square'), edit_rush_job_path(job.id),
+                      target: '_top' %>
+              </td>
+            <% end %>
+            <td><%= job.priority %></td>
+            <td><%= job.attempts %></td>
+            <td><%= job.job_class %></td>
+            <td><%= job.job_arguments %></td>
+            <td><%= job.run_at %></td>
+            <td><%= job.locked_at %></td>
+            <td><%= job.locked_by %></td>
+            <td><%= job.failed_at %></td>
+            <td><%= job.last_error %></td>
+            <td><%= job.queue %></td>
+          </tr>
         <% end %>
-        <td><%= job.priority %></td>
-        <td><%= job.attempts %></td>
-        <td><%= job.job_class %></td>
-        <td><%= job.job_arguments %></td>
-        <td><%= job.run_at %></td>
-        <td><%= job.locked_at %></td>
-        <td><%= job.locked_by %></td>
-        <td><%= job.failed_at %></td>
-        <td><%= job.last_error %></td>
-        <td><%= job.queue %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
 
-<%= render 'rush_job_mongoid/shared/pagination', controller: 'rush_jobs',
-                                                 pagination_param: 'page',
-                                                 pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.filter(filter_param_query).count, 20),
-                                                 page: @pagination_presenter.page %>
+    <%= render 'rush_job_mongoid/shared/pagination', controller: 'rush_jobs',
+                                                     pagination_param: 'page',
+                                                     pages_count: @pagination_presenter.pages(RushJobMongoid::RushJob.filter(filter_param_query).count, 20),
+                                                     page: @pagination_presenter.page %>
+  </div>
+<% end %>

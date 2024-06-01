@@ -39,7 +39,7 @@
     <%= form.label :queue, t(:queue), class: 'form-label' %>
     <%= form.text_field :queue, class: 'form-control' %>
   </div>
-  <%= form.submit t(:update), class: 'btn btn-primary' %>
+  <%= form.submit t(:update), class: 'btn btn-primary', data: { turbo: false } %>
 <% end %>
 
 <div class="mt-3">
@@ -47,5 +47,10 @@
     rush_job_url(@job),
     class: "btn btn-danger",
     method: :delete,
-    data: { confirm: t(:delete_job_confirmation, job_id: @job.id) } %>
+    data: {
+      turbo: false,
+      controller: 'rush-job-mongoid-confirm',
+      action: 'click->rush-job-mongoid-confirm#displayConfirm',
+      confirm_message: t(:delete_job_confirmation, job_id: @job.id)
+    } %>
 </div>

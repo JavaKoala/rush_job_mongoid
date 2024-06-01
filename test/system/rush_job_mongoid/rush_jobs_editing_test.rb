@@ -94,7 +94,6 @@ module RushJobMongoid
     test 'delete job' do
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
-
       accept_confirm do
         click_button 'Delete'
       end

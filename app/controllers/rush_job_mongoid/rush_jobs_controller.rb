@@ -5,6 +5,11 @@ module RushJobMongoid
     def index
       @pagination_presenter = PaginationPresenter.new(params[:page])
       @rush_jobs = RushJob.filter(filter_params).locked_by_desc.paginate(@pagination_presenter.page, 20)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
     end
 
     def edit

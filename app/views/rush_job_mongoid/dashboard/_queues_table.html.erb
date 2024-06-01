@@ -26,7 +26,12 @@
                                   class: "btn btn-danger btn-sm",
                                   method: :delete,
                                   params: { queue: group[:queue], priority: group[:priority] },
-                                  data: { confirm: t(:clear_queue_confirmation, queue: group[:queue]) } %></td>
+                                  data: {
+                                    turbo: false,
+                                    controller: 'rush-job-mongoid-confirm',
+                                    action: 'click->rush-job-mongoid-confirm#displayConfirm',
+                                    confirm_message: t(:clear_queue_confirmation, queue: group[:queue])
+                                  } %></td>
               <% end %>
             </tr>
           <% end %>
