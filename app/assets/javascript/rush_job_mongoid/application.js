@@ -4,7 +4,7 @@ import RushJobMongoidFiltersController from './controllers/rush_job_mongoid_filt
 import RushJobMongoidPollingController from './controllers/rush_job_mongoid_polling_controller';
 import RushJobMongoidReloadJobsTableController from './controllers/rush_job_mongoid_reload_jobs_table_controller';
 import 'bootstrap';
-import "@hotwired/turbo-rails"
+import '@hotwired/turbo-rails';
 
 window.Stimulus = Application.start();
 Stimulus.register('rush-job-mongoid-confirm', RushJobMongoidConfirmController);

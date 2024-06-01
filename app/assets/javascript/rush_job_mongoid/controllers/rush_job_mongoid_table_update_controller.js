@@ -2,12 +2,12 @@ import { Controller } from '@hotwired/stimulus';
 
 export class RushJobMongoidTableUpdateController extends Controller {
   updateJobs() {
-    const headers =  { 'Accept': 'text/vnd.turbo-stream.html' }
+    const headers = { 'Accept': 'text/vnd.turbo-stream.html' };
 
     this.blurTable();
     this.clearFlash();
 
-    fetch(document.location.href, { headers: headers})
+    fetch(document.location.href, { headers: headers })
       .then(response => response.text())
       .then(html => Turbo.renderStreamMessage(html));
   }
