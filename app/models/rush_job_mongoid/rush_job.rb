@@ -69,6 +69,10 @@ module RushJobMongoid
         .by_queue(filter_params[:queue])
     end
 
+    def error_message
+      errors.full_messages.to_sentence
+    end
+
     private
 
     def handler_hash

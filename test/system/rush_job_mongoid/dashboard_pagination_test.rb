@@ -17,7 +17,7 @@ module RushJobMongoid
       number_of_jobs.times do |n|
         RushJob.create(queue: "Queue #{n}",
                        priority: n,
-                       handler:,
+                       handler: handler,
                        locked_at: Time.zone.now + n.minutes,
                        locked_by: "Locked #{n}")
       end

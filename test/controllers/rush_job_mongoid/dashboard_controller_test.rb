@@ -22,7 +22,7 @@ module RushJobMongoid
       locked_at = Time.zone.now
       job_handler = "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  " \
                     "job_class: TestHandler\n  arguments:\n  - arg1"
-      job = RushJob.create(locked_by: 'JobRunner', locked_at:, handler: job_handler)
+      job = RushJob.create(locked_by: 'JobRunner', locked_at: locked_at, handler: job_handler)
 
       get '/rush_job_mongoid'
 

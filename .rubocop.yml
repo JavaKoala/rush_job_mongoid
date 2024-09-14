@@ -21,3 +21,6 @@ Metrics/ClassLength:
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
+
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: false
