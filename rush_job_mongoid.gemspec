@@ -25,13 +25,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'actionview', '~> 7.0'
   spec.add_dependency 'activesupport', '~> 7.0'
+  spec.add_dependency 'delayed_job', '~> 4.1'
+  spec.add_dependency 'delayed_job_mongoid', '~> 3.0'
   spec.add_dependency 'importmap-rails', '~> 2.0'
-  spec.add_dependency 'mongoid', '~> 8.1'
+  spec.add_dependency 'mongoid', '~> 9.0'
   spec.add_dependency 'sassc-rails', '~> 2.1'
   spec.add_dependency 'turbo-rails', '~> 2.0'
-
-  spec.add_runtime_dependency 'delayed_job', '~> 4.1'
-  spec.add_runtime_dependency 'delayed_job_mongoid', '~> 3.0'
 
   spec.add_development_dependency 'brakeman', '~> 6.0'
   spec.add_development_dependency 'capybara', '~> 3.39'

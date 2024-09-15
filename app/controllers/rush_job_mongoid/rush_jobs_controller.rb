@@ -21,7 +21,7 @@ module RushJobMongoid
         flash[:success] = t(:updated_job, job_id: @job.id)
         redirect_to rush_jobs_path(doc_id: @job.id)
       else
-        flash[:danger] = t(:unable_to_update, errors: @job.errors.full_messages.to_sentence)
+        flash.now[:danger] = t(:unable_to_update, errors: @job.error_message)
         render :edit, status: :unprocessable_entity
       end
     end
