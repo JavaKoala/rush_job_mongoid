@@ -45,10 +45,8 @@ module RushJobMongoid
                                       } }
                                     ]).to_a
 
-      group_result = []
-
-      groups.each do |group|
-        group_result << { queue: group['_id']['queue'], priority: group['_id']['priority'], count: group['count'] }
+      group_result = groups.map do |group|
+        { queue: group['_id']['queue'], priority: group['_id']['priority'], count: group['count'] }
       end
 
       group_result.sort_by! { |group| [group[:priority], group[:queue]] }
