@@ -30,7 +30,7 @@ Queues on the dashboard are eager loaded. If there are lots of queues this can a
 Add this line to your Ruby on Rails application's Gemfile:
 
 ```ruby
-gem 'rush_job_mongoid', '~> 1.2.0'
+gem 'rush_job_mongoid', '~> 1.3.0'
 ```
 
 And then execute:
@@ -48,7 +48,7 @@ Open an issue or
   1. Fork
   2. Update
   3. Test
-      1. `bundle exec rails app:test:all` and check coverage in `test/coverage/index.html`
+      1. `bundle exec rails test:all` and check coverage in `test/coverage/index.html`
       2. `bundle exec rubocop`
       3. `bundle exec brakeman`
   4. Open pull request
