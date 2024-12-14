@@ -1,15 +1,24 @@
 import { Controller } from '@hotwired/stimulus';
 
 export class RushJobMongoidTableUpdateController extends Controller {
-  updateJobs() {
+  async updateJobs() {
     const headers = { 'Accept': 'text/vnd.turbo-stream.html' };
 
     this.blurTable();
     this.clearFlash();
 
-    fetch(document.location.href, { headers: headers })
-      .then(response => response.text())
-      .then(html => Turbo.renderStreamMessage(html));
+    try {
+      const response = await fetch(document.location.href, { headers: headers })
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch job data. Status: ${response.status}`);
+      }
+
+      const response_text = await response.text();
+      Turbo.renderStreamMessage(response_text);
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 
   blurTable() {
