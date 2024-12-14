@@ -31,8 +31,11 @@ module RushJobMongoid
       assert_text 'Polling time: 3 seconds'
       assert_text 'Server 0'
       assert_text 'Server 1'
+      assert_no_selector '#rush-job-mongoid-polling-progress'
 
       find(:xpath, "//input[@id='rush-job-mongoid-polling']").set true
+
+      assert_selector '#rush-job-mongoid-polling-progress'
 
       RushJob.find_by(locked_by: 'Server 0').delete
       sleep 4
