@@ -30,11 +30,28 @@ export default class RushJobMongoidPollingController extends RushJobMongoidTable
   }
 
   startPolling() {
+    this.stopPolling();
     this.updateJobs();
 
-    intervalID = setTimeout(() => {
-      this.startPolling();
-    }, this.pollingTime() * 1000);
+    let progressInterval = 100;
+    let progressPrecent = 1;
+    let progressIntervalTime = this.pollingTime() * 10;
+
+    if (progressIntervalTime < 130) {
+      progressPrecent = 10;
+      progressIntervalTime = progressIntervalTime * 10;
+    }
+
+    intervalID = setInterval(() => {
+      this.progressBarProgressTarget.style = `width: ${progressInterval}%;`;
+      this.progressBarTarget.setAttribute('aria-valuenow', progressInterval);
+
+      progressInterval -= progressPrecent;
+
+      if (progressInterval < 0) {
+        this.startPolling();
+      }
+    }, progressIntervalTime);
   }
 
   stopPolling() {
