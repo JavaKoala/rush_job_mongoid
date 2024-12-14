@@ -3,7 +3,7 @@ import { RushJobMongoidTableUpdateController } from './rush_job_mongoid_table_up
 let intervalID;
 
 export default class RushJobMongoidPollingController extends RushJobMongoidTableUpdateController {
-  static targets = ['pollingTime', 'pollingTimeLabel', 'pollingSlide'];
+  static targets = ['pollingTime', 'pollingTimeLabel', 'pollingSlide', 'progressBar', 'progressBarProgress'];
 
   connect() {
     this.pollingChange();
@@ -22,8 +22,10 @@ export default class RushJobMongoidPollingController extends RushJobMongoidTable
 
     if (pollingSlide.checked === true) {
       this.startPolling();
+      this.progressBarTarget.style = 'height: 7px;';
     } else {
       this.stopPolling();
+      this.progressBarTarget.style = 'display: none;';
     }
   }
 
