@@ -1,4 +1,4 @@
-import { RushJobMongoidTableUpdateController } from './rush_job_mongoid_table_update_controller';
+import { RushJobMongoidTableUpdateController } from 'rush_job_mongoid/controllers/rush_job_mongoid_table_update_controller';
 
 let intervalID;
 
