@@ -8,7 +8,7 @@ export class RushJobMongoidTableUpdateController extends Controller {
     this.clearFlash();
 
     try {
-      const response = await fetch(document.location.href, { headers: headers })
+      const response = await fetch(document.location.href, { headers: headers });
 
       if (!response.ok) {
         throw new Error(`Failed to fetch job data. Status: ${response.status}`);
