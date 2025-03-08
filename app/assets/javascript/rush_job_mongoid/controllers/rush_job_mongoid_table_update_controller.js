@@ -23,7 +23,7 @@ export class RushJobMongoidTableUpdateController extends Controller {
 
   blurTable() {
     const jobsContainer = document.getElementById('rush-job-mongoid-jobs');
-    jobsContainer.classList.add('table-refresh');
+    jobsContainer.classList.add('opacity-25');
   }
 
   clearFlash() {

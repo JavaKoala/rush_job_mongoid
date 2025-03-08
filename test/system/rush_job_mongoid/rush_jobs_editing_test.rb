@@ -28,6 +28,7 @@ module RushJobMongoid
     end
 
     test 'back button' do
+      assert_button 'Clear'
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
       fill_in 'Queue', with: 'Updated Queue'
@@ -38,6 +39,7 @@ module RushJobMongoid
     end
 
     test 'edit job' do
+      assert_button 'Clear'
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
 
@@ -62,8 +64,7 @@ module RushJobMongoid
       fill_in 'Queue', with: queue
       click_button 'Update'
 
-      job_row = ['', priority, attempts,
-                 'UpdatedHandler', 'updatedArg', '2024-03-10 14:15:07 UTC',
+      job_row = ['', priority, attempts, 'UpdatedHandler', 'updatedArg', '2024-03-10 14:15:07 UTC',
                  '2024-01-20 05:45:12 UTC', locked_by, '2023-12-25 12:04:01 UTC',
                  last_error, queue]
 
@@ -81,6 +82,7 @@ module RushJobMongoid
     end
 
     test 'invalid edit' do
+      assert_button 'Clear'
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
       fill_in 'Priority', with: ''
@@ -92,6 +94,7 @@ module RushJobMongoid
     end
 
     test 'delete job' do
+      assert_button 'Clear'
       visit '/rush_job_mongoid/rush_jobs'
       find("#rush-job-mongoid-pencil-square-#{@job1.id}").click
       accept_confirm do
