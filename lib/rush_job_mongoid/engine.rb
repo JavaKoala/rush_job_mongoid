@@ -1,7 +1,7 @@
 module RushJobMongoid
   require 'importmap-rails'
   require 'mongoid'
-  require 'sassc-rails'
+  require 'propshaft'
 
   class Engine < ::Rails::Engine
     isolate_namespace RushJobMongoid

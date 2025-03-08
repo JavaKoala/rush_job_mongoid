@@ -9,7 +9,7 @@
   <%= javascript_importmap_tags %>
   <%= javascript_import_module_tag "rush_job_mongoid/application" %>
 
-  <%= stylesheet_link_tag "rush_job_mongoid/application", media: "all" %>
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/spacelab/bootstrap.min.css" rel="stylesheet">
 </head>
 <body data-bs-theme=<%= current_theme %>>
   <%= render 'layouts/rush_job_mongoid/navbar' %>
@@ -17,7 +17,7 @@
     <%= render 'layouts/rush_job_mongoid/flash_messages' %>
   </div>
 
-  <div class="jobs-container">
+  <div class="mx-4">
     <%= yield %>
   </div>
 

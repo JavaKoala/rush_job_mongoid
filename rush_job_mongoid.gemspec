@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = 'https://github.com/JavaKoala/rush_job_mongoid'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+    Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   end
 
   spec.add_dependency 'actionview', '~> 8.0'
@@ -29,20 +29,19 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'delayed_job_mongoid', '~> 3.0'
   spec.add_dependency 'importmap-rails', '~> 2.1'
   spec.add_dependency 'mongoid', '~> 9.0'
-  spec.add_dependency 'sassc-rails', '~> 2.1'
+  spec.add_dependency 'propshaft', '~> 1.1'
   spec.add_dependency 'turbo-rails', '~> 2.0'
 
   spec.add_development_dependency 'brakeman', '~> 7.0'
   spec.add_development_dependency 'capybara', '~> 3.40'
   spec.add_development_dependency 'database_cleaner-mongoid', '~> 2.0'
   spec.add_development_dependency 'debug', '~> 1.10'
-  spec.add_development_dependency 'puma', '~> 6.5'
+  spec.add_development_dependency 'puma', '~> 6.6'
   spec.add_development_dependency 'rubocop-capybara', '~> 2.21'
-  spec.add_development_dependency 'rubocop-minitest', '~> 0.36.0'
-  spec.add_development_dependency 'rubocop-rails', '~> 2.28'
-  spec.add_development_dependency 'selenium-webdriver', '~> 4.27'
+  spec.add_development_dependency 'rubocop-minitest', '~> 0.37.1'
+  spec.add_development_dependency 'rubocop-rails', '~> 2.30'
+  spec.add_development_dependency 'selenium-webdriver', '~> 4.29'
   spec.add_development_dependency 'simplecov', '~> 0.22.0'
-  spec.add_development_dependency 'sprockets-rails', '~> 3.5'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

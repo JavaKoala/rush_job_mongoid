@@ -30,7 +30,7 @@ Queues on the dashboard are eager loaded. If there are lots of queues this can a
 Add this line to your Ruby on Rails application's Gemfile:
 
 ```ruby
-gem 'rush_job_mongoid', '~> 1.5'
+gem 'rush_job_mongoid', '~> 1.6'
 ```
 
 And then execute:
@@ -55,6 +55,11 @@ Open an issue or
 
 ## Turbo
 This gem uses turbo-rails, https://github.com/hotwired/turbo-rails. For Rails UJS fork from v1.0.2
+
+## Propshaft
+This gem uses propshaft, https://github.com/rails/propshaft, and uses a CDN for Bootstrap CSS https://www.jsdelivr.com/package/npm/bootswatch
+
+For the previous bundled CSS and sprockets fork from v1.5.0
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

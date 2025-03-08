@@ -12,9 +12,7 @@ module RushJobMongoid
       @queue_groups_presenter.pages(@rush_job_queue_groups.count, 10)
     end
 
-    def page
-      @queue_groups_presenter.page
-    end
+    delegate :page, to: :@queue_groups_presenter
 
     private
 

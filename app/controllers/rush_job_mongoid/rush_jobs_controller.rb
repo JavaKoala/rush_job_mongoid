@@ -48,15 +48,15 @@ module RushJobMongoid
     end
 
     def update_params
-      params.require(:rush_job).permit(:priority,
-                                       :attempts,
-                                       :handler,
-                                       :run_at,
-                                       :locked_at,
-                                       :locked_by,
-                                       :failed_at,
-                                       :last_error,
-                                       :queue)
+      params.expect(rush_job: %i[priority
+                                 attempts
+                                 handler
+                                 run_at
+                                 locked_at
+                                 locked_by
+                                 failed_at
+                                 last_error
+                                 queue])
     end
   end
 end
